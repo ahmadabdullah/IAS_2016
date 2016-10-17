@@ -1,0 +1,42 @@
+2-Sep-2016
+
+Dear Mr. Abdullah:
+
+Manuscript ID 2016-PSPC-0365 entitled "Towards a New Paradigm for Ultrafast Transmission Line Relaying" that you submitted for peer evaluation by the IEEE-IAS Power System Protection Committee, has been reviewed.  The comments from reviewer(s) are included at the bottom of this letter.
+
+The reviewers have declined to make a recommendation on your paper in its present form.   Please submit a revised manuscript that takes into consideration the reviewers comments.  Please note that submitting a revised manuscript does not guarantee eventual acceptance, and that your resubmission will be evaluated by the reviewers before a decision is rendered.
+
+Also, if you have not already done so, please add a reference citation to any earlier conference version of your paper.  This citation will serve to formally acknowledge that an earlier version of the paper exists.
+
+The attached document describes the process for submitting a revised manuscript.  Please read this document and follow the instructions carefully.
+
+IEEE considers a revised manuscript to be a new manuscript, so you MUST execute a copyright transfer for the revised manuscript after you complete the submission.  There will be link to the e-Copyright application on the confirmation page that appears after you click "Submit".
+
+The deadline for resubmission of your manuscript is 30 days from now.  We are trying to facilitate timely publication of papers, and your resubmission must be completed before 11:59pm New York Time on 12-Oct-2016.
+
+I look forward to seeing your resubmission.
+
+Sincerely,
+
+Rob Hoerauf
+Associate Editor and Papers Review Chair, IEEE-IAS Power System Protection Committee
+
+[D3]
+Comments to the Author:
+
+Associate Editor
+Comments to the Author:
+Please address our reviewers' comments.
+
+Reviewer: 1
+
+Comments to the Author
+1) The authors term their approach to be ultrafast, but no results are presented to show, how the approach will lead to ultrafast relaying, since wavelet and ANN are still mostly offline.
+2) The authors need to compare the performance of the proposed approach with the accuracy of the existing approaches.
+3) The oscillatory nature and signal analysis is not presented.
+4) The paper requires support of more results and analysis related to the wavelet and signal processing to justify the claims.
+
+Reviewer: 2
+
+Comments to the Author
+(There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
