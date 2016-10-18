@@ -534,41 +534,258 @@ In this paper, the wavelets details coefficients are directly used to train
 \end_layout
 
 \begin_layout Standard
-The paper is organized as follows: The solution methodology is given in
- part 
+The paper is organized as follows: A quick overview of both the DWT and
+ ANN is offered in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
+reference "sec:Background"
+
+\end_inset
+
+.
+ The solution methodology is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
 reference "sec:Solution-methodology"
 
 \end_inset
 
 .
  Simulation platform which consists of a description of EMTP model and the
- creation of transients’ cases for ANN training is described in part 
+ creation of transients’ cases for ANN training is described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Simulation-Platform"
 
 \end_inset
 
 .
- The structure of the feature vector is given in section 
+ The structure of the feature vector is given in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Building-of-Feature"
 
 \end_inset
 
 .
- Simulation results are presented in part 
+ Simulation results are presented in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Results"
 
 \end_inset
 
 .
+ Comparison to existing methods in literature is provided in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Comparison-to-lit"
+
+\end_inset
+
+.
  Conclusions and future research are provided at the end of the paper.
+\end_layout
+
+\begin_layout Section
+Background
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Background"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this section, an overview of both DWT and neural networks as used in
+ this paper is provided.
+ 
+\end_layout
+
+\begin_layout Subsection
+DWT
+\end_layout
+
+\begin_layout Standard
+In this paper, the dyadic wavelet transform is used 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boggess2009"
+
+\end_inset
+
+.
+ The transform takes the signal and applies low and high pass filter to
+ it.
+ The transform convert the original signal into an independent set of signals
+ spanning certain frequency bands.
+ The frequency bands are determined by the number of levels the signal is
+ sought to be analyzed.
+ The word independent means that one cannot derive one level from another,
+ i.e., level 2 can’t be derived from level 1.
+ The frequency of each level depends on the sampling frequency.
+ Nyquist theory still holds here.
+ The highest frequency seen in the signal will be at most equal to half
+ of the sampling frequency.
+ Given a certain sampling frequency, the dyadic transform will first apply
+ a high and low pass filter to the signal resulting in two signals.
+ The signal corresponding to the output of the high pass filter is called
+ level 1 and the other signal is called approximation 1.
+ Both of those signals are independent.
+ One can stop at this step or can apply another low and high pass filter
+ to the first approximation to get level 2 and approximation 2.
+ Again level 2 will span a frequency band corresponding to the upper half
+ of the frequency band of approximation 1 while approximation 2 will occupy
+ the lower frequency band.
+ Continuing this manner by applying successive low and high pass filters,
+ one obtains a set of levels also called details and one last approximation.
+ In theory the last approximation should correspond to a pure sine wave
+ assuming the high frequency components imposed on the power frequency have
+ high frequency not to be included in the frequency band of the last approximati
+on.
+ Taking numerical example, if one uses a 100 kHz frequency then the resulting
+ DWT decomposition is shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:DWT-example"
+
+\end_inset
+
+.
+ The equation used for the transform is given below where φ(t) is the wavelet
+ is used, a causes scaling (which is level determination) and b causes shift
+ in time.
+ In practice it is not needed to apply the transform all over the infinite
+ time line.
+ Since wavelets have a strong localization property then it is only needed
+ to apply the transform to the time period under study.
+ The equation for the details coefficients are given below in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:DWT_eq"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boggess2009"
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename DWT flow chart.tif
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DWT at 100 kHz sampling rate for 5 levels
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DWT-example"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+Wf\left(a,b\right)=\frac{1}{\sqrt{a}}\times\int_{-\infty}^{\infty}f\left(t\right)\times\overline{\varphi\left(\frac{t-b}{a}\right)}dt\label{eq:DWT_eq}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Classification with Neural Networks
+\end_layout
+
+\begin_layout Standard
+Artificial Neural networks is very well known tool for classification.
+ The classification done in this paper is not probabilistic but rather determini
+stic.
+ The inputs are vectors in the n-dimensional space, where n is the size
+ of the input vectors, that need to be mapped to another vector space the
+ size of which is determined by the number of output classes one wants to
+ map to.
+ In simple terms this classification can be shown to be carried out by ANN
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zurada1992"
+
+\end_inset
+
+.
+ All neural networks in this paper consist of three layers: an input layer,
+ a hidden layer and output layer.
+ Each layer consists of a certain number of neurons.
+ The connections between those neurons are called synapses.
+ The input layer consists of junctions that represent the input.
+ The number of junctions must equal to n which is the dimension of the input
+ vector.
+ The hidden layer can consist of any number of neurons.
+ The classification is greatly affected by the number of neurons in the
+ hidden layer.
+ The output layer consists of neurons that are activated by a function the
+ input of which comes from the hidden layer.
+ Classes or more specifically output classes are the patterns one wants
+ to map the input to.
+ The main idea behind classification in the n-dimensional space is that
+ if the inputs belong to linearly separable regions of the n-dimensional
+ space then using ANN, one can draw planes in that space so that the space
+ between those plane contain only one region and each region is then mapped
+ to one of the output classes using the activation function in the output
+ neuron.
+ The weights or more specifically synaptic weights of the synapsis are adjusted
+ during the training phase such that the vector space is divided to regions
+ each of which corresponds to certain class.
+ Any output neuron receives the input vector through synaptic weights.
+ The input is then applied to the function of the neuron which has the form
+ g(x)=0 which is an equation of the plane in the n-dimensional space.
+ The neuron is activated only if the output is positive.
+ In this paper, the author uses the widely known and used backward propagation
+ algorithm for the calculation of weights.
+ Knowledge is stored in the network through those weights.
+ Supervised learning only is done in this paper.
+ The algorithm of the steepest gradient is used throughout the paper 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zurada1992"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -2327,6 +2544,17 @@ Switching
 \begin_layout Plain Layout
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Comparison to existing methods in literature
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Comparison-to-lit"
 
 \end_inset
 
