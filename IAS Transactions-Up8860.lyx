@@ -191,13 +191,6 @@ Transmission Line Relaying, Wavelets Transform, Modal Analysis, Artificial
 
 \begin_layout Section
 Introduction
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Introduction"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -550,7 +543,7 @@ reference "sec:Background"
 \end_inset
 
 .
- The rationale behind the proposed principle is presented in 
+ The rational behind the proposed algorithm is presented in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Rationale-Behind-the"
@@ -567,7 +560,7 @@ reference "sec:Solution-methodology"
 
 .
  Simulation platform which consists of a description of EMTP model and the
- creation of transient cases for ANN training is described in 
+ creation of transients’ cases for ANN training is described in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Simulation-Platform"
@@ -599,7 +592,7 @@ reference "sec:Results"
 \end_inset
 
 .
- Comparison to existing methods in literature is offered in 
+ Comparison to existing methods in literature is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Comparison-to-lit"
@@ -622,8 +615,8 @@ name "sec:Background"
 \end_layout
 
 \begin_layout Standard
-In this section, an overview of both DWT and ANN as used in this paper is
- provided.
+In this section, an overview of both DWT and neural networks as used in
+ this paper is provided.
  
 \end_layout
 
@@ -640,9 +633,9 @@ key "Boggess2009"
 \end_inset
 
 .
- The transform takes the signal and applies low and high pass filters to
+ The transform takes the signal and applies low and high pass filter to
  it.
- The transform converts the original signal into an independent set of signals
+ The transform convert the original signal into an independent set of signals
  spanning certain frequency bands.
  The frequency bands are determined by the number of levels the signal is
  sought to be analyzed.
@@ -659,17 +652,17 @@ key "Boggess2009"
  Both of those signals are independent.
  One can stop at this step or can apply another low and high pass filter
  to the first approximation to get level 2 and approximation 2.
- Level 2 will span a frequency band corresponding to the upper half of the
- frequency band of approximation 1 while approximation 2 will occupy the
- lower frequency band.
+ Again level 2 will span a frequency band corresponding to the upper half
+ of the frequency band of approximation 1 while approximation 2 will occupy
+ the lower frequency band.
  Continuing this manner by applying successive low and high pass filters,
- one obtains a set of levels - also called details - and one last approximation.
+ one obtains a set of levels also called details and one last approximation.
  In theory the last approximation should correspond to a pure sine wave
  assuming the high frequency components imposed on the power frequency have
  high frequency not to be included in the frequency band of the last approximati
 on.
- Taking a numerical example, if one uses 200 kHz sampling frequency, then
- the resulting DWT decomposition is shown in 
+ Taking numerical example, if one uses a 100 kHz frequency then the resulting
+ DWT decomposition is shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:DWT-example"
@@ -678,23 +671,8 @@ reference "fig:DWT-example"
 
 .
  The equation used for the transform is given below where φ(t) is the wavelet
- used, parameter 
-\begin_inset Quotes eld
-\end_inset
-
-a
-\begin_inset Quotes erd
-\end_inset
-
- causes scaling (which is level determination) and 
-\begin_inset Quotes eld
-\end_inset
-
-b
-\begin_inset Quotes erd
-\end_inset
-
- causes shift in time.
+ is used, a causes scaling (which is level determination) and b causes shift
+ in time.
  In practice it is not needed to apply the transform all over the infinite
  time line.
  Since wavelets have a strong localization property then it is only needed
@@ -790,36 +768,28 @@ key "Zurada1992"
  Each layer consists of a certain number of neurons.
  The connections between those neurons are called synapses.
  The input layer consists of junctions that represent the input.
- The number of junctions must equal to 
-\begin_inset Quotes eld
-\end_inset
-
-n
-\begin_inset Quotes erd
-\end_inset
-
- which is the dimension of the input vector.
+ The number of junctions must equal to n which is the dimension of the input
+ vector.
  The hidden layer can consist of any number of neurons.
- The classification accuracy is greatly affected by the number of neurons
- in the hidden layer.
+ The classification is greatly affected by the number of neurons in the
+ hidden layer.
  The output layer consists of neurons that are activated by a function the
  input of which comes from the hidden layer.
  Classes or more specifically output classes are the patterns one wants
  to map the input to.
- The main idea behind ANN classification is that if the inputs belong to
- linearly separable regions of the n-dimensional space then using ANN, one
- can draw planes in that space so that the space between those plane contain
- only one region and each region is then mapped to one of the output classes
- using the activation function in the output neuron.
+ The main idea behind classification in the n-dimensional space is that
+ if the inputs belong to linearly separable regions of the n-dimensional
+ space then using ANN, one can draw planes in that space so that the space
+ between those plane contain only one region and each region is then mapped
+ to one of the output classes using the activation function in the output
+ neuron.
  The weights or more specifically synaptic weights of the synapsis are adjusted
  during the training phase such that the vector space is divided to regions
  each of which corresponds to certain class.
  Any output neuron receives the input vector through synaptic weights.
  The input is then applied to the function of the neuron which has the form
  g(x)=0 which is an equation of the plane in the n-dimensional space.
- The function g(x)=0 is realized in the ANN by the neurons and the synaptic
- weights.
- The neuron output is activated only if the output is positive.
+ The neuron is activated only if the output is positive.
  In this paper, the author uses the widely known and used backward propagation
  algorithm for the calculation of weights.
  Knowledge is stored in the network through those weights.
@@ -925,28 +895,28 @@ reference "eq:1"
 
 \end_inset
 
- and 
+and 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:2"
 
 \end_inset
 
- is hard and generally impossible as it depends on the boundary and initial
- conditions of the case involved.
+ is very hard and generally impossible as it depends on the boundary and
+ initial conditions of the case involved.
  Perhaps the most straightforward solution method is to obtain the solution
  in terms of an infinite time series expansion.
  Using infinite time series expansion would mystify the solution, because
- the author’s intention is to analyze the frequency content of the signal
- as this content changes over time.
+ the author’s intention is to see the frequency content of the signal as
+ this content changes over time.
  Application of Laplace and Fourier transforms to those equations gives
  out integrals that yet to be solved formally.
  Moreover, when a three phase line is studied, the above equations become
  six equations (two equations for each phase: a voltage and current equation).
- And those equations are interdependent which makes decoupling them hard
- undertaking, if not impossible in most cases.
- If we have mutual coupling between two lines sharing the same tower, then
- we have 3 more equations making them a total of nine equations.
+ And those equations are interdependent which makes decoupling them very
+ hard, if not impossible in most cases.
+ If we have mutual coupling between two lines, then we have 3 more equations
+ making them a total of nine equations.
  And this is only for one line.
  Those equations then need to be solved simultaneously along with all other
  equations in the system.
@@ -978,9 +948,10 @@ reference "eq:2"
  Moreover, the same fault case on different lines will cause different fault
  generated transients because each case has its own boundary and initial
  conditions, which is different for all neighboring lines.
- For this reason, no attempt is made to solve the equations formally but
- solve them numerically by running EMTP simulations, extracting the high
- frequency content then analyzing them.
+ For this reason, no attempt is made to solve the equations formally (the
+ mathematical community can’t solve them analytically yet) but solve them
+ numerically by running EMTP simulations, extracting the high frequency
+ content then analyzing them.
  
 \end_layout
 
@@ -991,14 +962,7 @@ Since the author argues that those frequencies -which change over time-
  then the aggregate of those fault generated high frequencies will be different
  for each line.
  What remains is to investigate how the feature space can be defined such
- that this difference can be attained and this is done in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:Building-of-Feature"
-
-\end_inset
-
-.
+ that this difference can be attained.
  If it is possible to map those frequency components to an n-dimensional
  space, then faults corresponding to a certain line should be separable
  from faults on adjacent lines.
@@ -1011,15 +975,15 @@ key "Zurada1992"
 \end_inset
 
  from each other.
- This is the main argument behind the use of ANN as pattern recognition
- approach.
- 
+ This is the main argument behind the use of pattern recognition approach.
+ Since the author is trying to define a feature space that may be linearly
+ separable for each line, then ANN is the method of choice.
 \end_layout
 
 \begin_layout Standard
 For any fault occurring on a transmission line, the transient generated
- frequency components depend on the initial and the boundary conditions
- (the lines connected the faulted line).
+ frequency components depend on the initial conditions at the point of the
+ fault and the boundary conditions (the lines connected the faulted line).
  Since by definition all adjacent lines are different then the frequency
  generated transients for faults on transmission lines will be unique for
  each line.
@@ -1048,8 +1012,8 @@ reference "subsec:Transient-Event-Type"
 .
  This basically means that there is a mapping that can divide a certain
  subspace to linearly separable regions that correspond to those event types.
- If one zooms in that event subspace, one can see which line is causing
- that event type.
+ If we zoom in that event subspace we can see which line is causing that
+ event type.
  
 \end_layout
 
@@ -1832,48 +1796,7 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  Since the first one eighth of a cycle following the transient event is
  only sought, the details coefficients corresponding to that period are
  only obtained.
- 
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename reviewer's comments/Fig. 3.svg
-	width 16cm
-	height 22cm
-	keepAspectRatio
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Figure shows the mode1 current of a certain fault case at different fault
- resistances.
- The same fault type, fault location and incipient angle is evaluated but
- at different fault resistances
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:fault_resistance"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Two modes out of the three modes are only used.
+ Two modes out of the three modes are only used.
  The details coefficients of one level of Mode2 and Mode3 are stacked on
  top of each other.
  It should be emphasized that building the n-dimensional vector this way
@@ -1942,10 +1865,11 @@ reference "subsec:Creation-Of-Transient"
  It is not possible to exhaust all foreseen transient parameters, for example
  it is not computationally feasible to include all values of fault resistance
  into consideration.
- However, it is evident that the oscillations present in the transient signal
- corresponding to a fault case with a faults resistance of 20 Ω should have
- oscillations that fall in between the same fault case but with a fault
- resistance of 0 Ω and 100 Ω.
+ However, it is not hard that one uses engineering judgment to see that
+ the oscillations present in the transient signal corresponding to a fault
+ case with a faults resistance of 20 Ω should have oscillations that fall
+ in between the same fault case but with a fault resistance of 0 Ω and 100
+ Ω.
  This notion of “in-betweenness” is illustrated in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1953,7 +1877,51 @@ reference "fig:fault_resistance"
 
 \end_inset
 
- .
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename reviewer's comments/Fig. 3.svg
+	width 16cm
+	height 22cm
+	keepAspectRatio
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure shows the mode1 current of a certain fault case at different fault
+ resistances.
+ The same fault type, fault location and incipient angle is evaluated but
+ at different fault resistances
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fault_resistance"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+.
  As explained in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1967,7 +1935,6 @@ reference "sec:Solution-methodology"
  can be linearly separated from all other transients, then the fault cases
  corresponding to 50% line length should fall in the region of those fault
  cases.
- The same argument applies for all event types.
  
 \end_layout
 
@@ -2074,6 +2041,7 @@ reference "subsec:Transient-Event-Type"
  For the sampling frequency used in this paper, the dimension of the n-dimension
 al space is one hundred and sixty eight (168) if level 4 is used to build
  the feature vector, i.e, each modal current has 84 coefficients.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2926,103 +2894,6 @@ name "sec:Comparison-to-lit"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The major drawbacks of existing methods have been summarized in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:Introduction"
-
-\end_inset
-
-.
- In this section, the method proposed will be compared to existing methods
- in literature that uses single end data to reach a decision regarding the
- fault.
- 
-\end_layout
-
-\begin_layout Standard
-Even though the subject of transmission line relaying based on high frequency
- components has and continues to receive attention from academia and the
- industry, a handful of papers studies transients other than faults and
- their effect on the proposed methods.
- 
-\end_layout
-
-\begin_layout Standard
-In 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Martin2003"
-
-\end_inset
-
-, the details coefficients of all phase voltages and currents are fed to
- ANN for training.
- However, for the method to perform well, the high frequency transients
- imposed on the fundamental voltage have to be measured, which is not feasible
- if CVT is used as the bandwidth of CVTs don't exceed 1 kHz 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "hou1996capacitive"
-
-\end_inset
-
-.
- Additionally, the method ignores all transients types other than faults
- which can mislead the scheme most of the times.
- 
-\end_layout
-
-\begin_layout Standard
-In 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Silva2006"
-
-\end_inset
-
-, the details coefficients of all phase voltages and currents are still
- used to train the ANN in addition to using an energy quantity as a trip
- restraint.
- However, transients on the line being protected are being taken into considerat
-ion while training the ANN.
- A drawback of this method is the need to perform many offline studies to
- determine the threshold for the trip restraint.
- Moreover, the method suffers from limited bandwidth of CVTs and CCVTs.
- 
-\end_layout
-
-\begin_layout Standard
-In 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "perera2011recognition"
-
-\end_inset
-
-, the energy of the three phase currents are used to train a probabilistic
- classier.
- Voltages have been abandoned for the purpose of classification due to the
- aforementioned shortcomings of CVTs.
- However, the simulated system is small and the methods proposed cannot
- identify the line causing the transient event.
- Additionally, the use of energy as a trip restraint requires a detailed
- study on the proximity of the transient to the measuring CT.
- 
-\end_layout
-
-\begin_layout Standard
-In all methods mentioned above, at least one quarter of a cycle is needed
- to reach a secure decision.
- On the other hand, the approach proposed in this paper uses only one half
- of that to reach a secure decision about whether the transient belongs
- to the line being protected and whether the transient is a fault.
- Additionally, actual physical tower configurations have not been taken
- into consideration.
- 
 \end_layout
 
 \begin_layout Section

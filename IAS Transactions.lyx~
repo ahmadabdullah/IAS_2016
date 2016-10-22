@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass IEEEtran
 \begin_preamble
 % for subfigures/subtables
@@ -17,22 +19,22 @@
 \language_package default
 \inputencoding default
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
 \bibtex_command bibtex
 \index_command default
-\float_placement tbh
+\float_placement h
 \paperfontsize default
 \spacing single
 \use_hyperref true
@@ -50,15 +52,24 @@
 \pdf_quoted_options "pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false"
 \papersize default
 \use_geometry false
-\use_amsmath 1
-\use_esint 0
-\use_mhchem 1
-\use_mathdots 1
-\cite_engine natbib_numerical
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -129,7 +140,7 @@ Ahmad Abdullah is with Electric Power Engineers Inc., Austin, TX, 78738,
  e-mail: 
 \begin_inset CommandInset href
 LatexCommand href
-target "habdullah@epeconsulting.com"
+target "ahmad.abdullah@ieee.org"
 type "mailto:"
 
 \end_inset
@@ -180,6 +191,13 @@ Transmission Line Relaying, Wavelets Transform, Modal Analysis, Artificial
 
 \begin_layout Section
 Introduction
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Introduction"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -523,41 +541,516 @@ In this paper, the wavelets details coefficients are directly used to train
 \end_layout
 
 \begin_layout Standard
-The paper is organized as follows: The solution methodology is given in
- part 
+The paper is organized as follows: A quick overview of both the DWT and
+ ANN is offered in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
+reference "sec:Background"
+
+\end_inset
+
+.
+ The rationale behind the proposed principle is presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Rationale-Behind-the"
+
+\end_inset
+
+.
+ The solution methodology is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
 reference "sec:Solution-methodology"
 
 \end_inset
 
 .
  Simulation platform which consists of a description of EMTP model and the
- creation of transients’ cases for ANN training is described in part 
+ creation of transient cases for ANN training is described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Simulation-Platform"
 
 \end_inset
 
 .
- The structure of the feature vector is given in section 
+ The structure of the feature vector is given in 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Building-of-Feature"
+LatexCommand formatted
+reference "subsec:Building-of-Feature"
 
 \end_inset
 
 .
- Simulation results are presented in part 
+ Signal Analysis is provided in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
+reference "sec:Signal-Analsysis"
+
+\end_inset
+
+.
+ Simulation results are presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
 reference "sec:Results"
 
 \end_inset
 
 .
+ Comparison to existing methods in literature is offered in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Comparison-to-lit"
+
+\end_inset
+
+.
  Conclusions and future research are provided at the end of the paper.
+\end_layout
+
+\begin_layout Section
+Background
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Background"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this section, an overview of both DWT and ANN as used in this paper is
+ provided.
+ 
+\end_layout
+
+\begin_layout Subsection
+DWT
+\end_layout
+
+\begin_layout Standard
+In this paper, the dyadic wavelet transform is used 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boggess2009"
+
+\end_inset
+
+.
+ The transform takes the signal and applies low and high pass filters to
+ it.
+ The transform converts the original signal into an independent set of signals
+ spanning certain frequency bands.
+ The frequency bands are determined by the number of levels the signal is
+ sought to be analyzed.
+ The word independent means that one cannot derive one level from another,
+ i.e., level 2 can’t be derived from level 1.
+ The frequency of each level depends on the sampling frequency.
+ Nyquist theory still holds here.
+ The highest frequency seen in the signal will be at most equal to half
+ of the sampling frequency.
+ Given a certain sampling frequency, the dyadic transform will first apply
+ a high and low pass filter to the signal resulting in two signals.
+ The signal corresponding to the output of the high pass filter is called
+ level 1 and the other signal is called approximation 1.
+ Both of those signals are independent.
+ One can stop at this step or can apply another low and high pass filter
+ to the first approximation to get level 2 and approximation 2.
+ Level 2 will span a frequency band corresponding to the upper half of the
+ frequency band of approximation 1 while approximation 2 will occupy the
+ lower frequency band.
+ Continuing this manner by applying successive low and high pass filters,
+ one obtains a set of levels - also called details - and one last approximation.
+ In theory the last approximation should correspond to a pure sine wave
+ assuming the high frequency components imposed on the power frequency have
+ high frequency not to be included in the frequency band of the last approximati
+on.
+ Taking a numerical example, if one uses 200 kHz sampling frequency, then
+ the resulting DWT decomposition is shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:DWT-example"
+
+\end_inset
+
+.
+ The equation used for the transform is given below where φ(t) is the wavelet
+ used, parameter 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+ causes scaling (which is level determination) and 
+\begin_inset Quotes eld
+\end_inset
+
+b
+\begin_inset Quotes erd
+\end_inset
+
+ causes shift in time.
+ In practice it is not needed to apply the transform all over the infinite
+ time line.
+ Since wavelets have a strong localization property then it is only needed
+ to apply the transform to the time period under study.
+ The equation for the details coefficients are given below in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:DWT_eq"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boggess2009"
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename DWT flow chart.tif
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DWT at 100 kHz sampling rate for 5 levels
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DWT-example"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+Wf\left(a,b\right)=\frac{1}{\sqrt{a}}\times\int_{-\infty}^{\infty}f\left(t\right)\times\overline{\varphi\left(\frac{t-b}{a}\right)}dt\label{eq:DWT_eq}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Classification with Neural Networks
+\end_layout
+
+\begin_layout Standard
+Artificial Neural networks is very well known tool for classification.
+ The classification done in this paper is not probabilistic but rather determini
+stic.
+ The inputs are vectors in the n-dimensional space, where n is the size
+ of the input vectors, that need to be mapped to another vector space the
+ size of which is determined by the number of output classes one wants to
+ map to.
+ In simple terms this classification can be shown to be carried out by ANN
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zurada1992"
+
+\end_inset
+
+.
+ All neural networks in this paper consist of three layers: an input layer,
+ a hidden layer and output layer.
+ Each layer consists of a certain number of neurons.
+ The connections between those neurons are called synapses.
+ The input layer consists of junctions that represent the input.
+ The number of junctions must equal to 
+\begin_inset Quotes eld
+\end_inset
+
+n
+\begin_inset Quotes erd
+\end_inset
+
+ which is the dimension of the input vector.
+ The hidden layer can consist of any number of neurons.
+ The classification accuracy is greatly affected by the number of neurons
+ in the hidden layer.
+ The output layer consists of neurons that are activated by a function the
+ input of which comes from the hidden layer.
+ Classes or more specifically output classes are the patterns one wants
+ to map the input to.
+ The main idea behind ANN classification is that if the inputs belong to
+ linearly separable regions of the n-dimensional space then using ANN, one
+ can draw planes in that space so that the space between those plane contain
+ only one region and each region is then mapped to one of the output classes
+ using the activation function in the output neuron.
+ The weights or more specifically synaptic weights of the synapsis are adjusted
+ during the training phase such that the vector space is divided to regions
+ each of which corresponds to certain class.
+ Any output neuron receives the input vector through synaptic weights.
+ The input is then applied to the function of the neuron which has the form
+ g(x)=0 which is an equation of the plane in the n-dimensional space.
+ The function g(x)=0 is realized in the ANN by the neurons and the synaptic
+ weights.
+ The neuron output is activated only if the output is positive.
+ In this paper, the author uses the widely known and used backward propagation
+ algorithm for the calculation of weights.
+ Knowledge is stored in the network through those weights.
+ Supervised learning only is done in this paper.
+ The algorithm of the steepest gradient is used throughout the paper 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zurada1992"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Rationale Behind the Proposed Method
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Rationale-Behind-the"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When a fault (or any transient event) occurs, it launches a traveling wave
+ as well as high frequency oscillatory components.
+ Traveling waves can be easily quantified as they arrive at the line terminals
+ but the high frequency oscillatory components cannot.
+ The reason for the oscillatory components not being easily quantified before
+ in literature will be explained below.
+ 
+\end_layout
+
+\begin_layout Standard
+At this point, the author needs to introduce new terminology.
+ Speaking about a certain transmission line, the author calls a fault on
+ that line a fault case.
+ A fault case has its parameters.
+ Those parameters are: incipient angle, fault resistance, fault type and
+ fault location.
+ Thus a certain fault case on a specific transmission line causes voltages
+ and currents to oscillate in a manner in accordance with the parameters
+ of that fault case.
+ The formal solution of the currents and voltages of a single phase line
+ is given by the following two equations (called telegrapher equations)
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Grainger1994"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dV}{dx}=R\times I+L\times\frac{dI}{dt}\label{eq:1}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{dI}{dx}=R\times V+L\times\frac{dV}{dt}\label{eq:2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where: 
+\end_layout
+
+\begin_layout Itemize
+I, V are the current and the voltage
+\end_layout
+
+\begin_layout Itemize
+R is the resistance per unit length of the line
+\end_layout
+
+\begin_layout Itemize
+L and C are inductance and capacitance of the line per unit length
+\end_layout
+
+\begin_layout Itemize
+x is the distance from a zero reference frame generally taken to be at either
+ end of the line.
+\end_layout
+
+\begin_layout Standard
+A general closed form solution of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:2"
+
+\end_inset
+
+ is hard and generally impossible as it depends on the boundary and initial
+ conditions of the case involved.
+ Perhaps the most straightforward solution method is to obtain the solution
+ in terms of an infinite time series expansion.
+ Using infinite time series expansion would mystify the solution, because
+ the author’s intention is to analyze the frequency content of the signal
+ as this content changes over time.
+ Application of Laplace and Fourier transforms to those equations gives
+ out integrals that yet to be solved formally.
+ Moreover, when a three phase line is studied, the above equations become
+ six equations (two equations for each phase: a voltage and current equation).
+ And those equations are interdependent which makes decoupling them hard
+ undertaking, if not impossible in most cases.
+ If we have mutual coupling between two lines sharing the same tower, then
+ we have 3 more equations making them a total of nine equations.
+ And this is only for one line.
+ Those equations then need to be solved simultaneously along with all other
+ equations in the system.
+ For today power systems which consist of thousands of lines, solving all
+ equations analytically in a closed form is behind human ingenuity.
+ 
+\end_layout
+
+\begin_layout Standard
+The main aim is to detect the fault once it is initiated.
+ It is very apparent that high frequency fault generated transients are
+ different for each fault case on a specific line.
+ This is because each fault case corresponding to a specific line has its
+ set of equations as given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:2"
+
+\end_inset
+
+ above with its unique boundary (lines connected to it) and initial conditions.
+ Moreover, the same fault case on different lines will cause different fault
+ generated transients because each case has its own boundary and initial
+ conditions, which is different for all neighboring lines.
+ For this reason, no attempt is made to solve the equations formally but
+ solve them numerically by running EMTP simulations, extracting the high
+ frequency content then analyzing them.
+ 
+\end_layout
+
+\begin_layout Standard
+Since the author argues that those frequencies -which change over time-
+ are different for each line, the author only needs to see the aggregate
+ of all those frequency components for each line, and if intuition is true
+ then the aggregate of those fault generated high frequencies will be different
+ for each line.
+ What remains is to investigate how the feature space can be defined such
+ that this difference can be attained and this is done in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Building-of-Feature"
+
+\end_inset
+
+.
+ If it is possible to map those frequency components to an n-dimensional
+ space, then faults corresponding to a certain line should be separable
+ from faults on adjacent lines.
+ The author takes this idea further and investigates whether the aggregate
+ of all faults from each line is actually linearly separable 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zurada1992"
+
+\end_inset
+
+ from each other.
+ This is the main argument behind the use of ANN as pattern recognition
+ approach.
+ 
+\end_layout
+
+\begin_layout Standard
+For any fault occurring on a transmission line, the transient generated
+ frequency components depend on the initial and the boundary conditions
+ (the lines connected the faulted line).
+ Since by definition all adjacent lines are different then the frequency
+ generated transients for faults on transmission lines will be unique for
+ each line.
+ The question is whether those frequency components can be combined in a
+ certain way to form a pattern to be recognized.
+ 
+\end_layout
+
+\begin_layout Standard
+The same argument not only applies to faults but also apply to switching
+ events, lightning strikes on transmission lines.
+ The author calls faults, lighting strikes, and switching events the transient
+ event types.
+ Evidently, the frequency content of faults –on all lines- would be different
+ from switching which in turn different from lighting because the equations
+ governing the solutions are always different because of the different transient
+ event type and the different boundary and initial conditions.
+ Those events can then be first recognized and then the event can be traced
+ back to the line originating it as given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Transient-Event-Type"
+
+\end_inset
+
+.
+ This basically means that there is a mapping that can divide a certain
+ subspace to linearly separable regions that correspond to those event types.
+ If one zooms in that event subspace, one can see which line is causing
+ that event type.
+ 
 \end_layout
 
 \begin_layout Section
@@ -597,7 +1090,7 @@ Historical treatment of traveling waves - as used in the ladder diagram
  in section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Building-of-Feature"
+reference "subsec:Building-of-Feature"
 
 \end_inset
 
@@ -677,7 +1170,7 @@ key "Hedman1965,Hedman1965b"
  The modal matrix will be explained in section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Building-of-Feature"
+reference "subsec:Building-of-Feature"
 
 \end_inset
 
@@ -765,7 +1258,7 @@ The outcome of the DWT is a series of coefficients for each mode and for
  Building the training vector will be explained in section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Building-of-Feature"
+reference "subsec:Building-of-Feature"
 
 \end_inset
 
@@ -828,14 +1321,14 @@ name "sec:Simulation-Platform"
 In this section, the ATP/EMTP model is presented in subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:EMTP-Model"
+reference "subsec:EMTP-Model"
 
 \end_inset
 
  while in subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-Of-Transient"
+reference "subsec:Creation-Of-Transient"
 
 \end_inset
 
@@ -848,7 +1341,7 @@ reference "sub:Creation-Of-Transient"
 EMTP Model
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:EMTP-Model"
+name "subsec:EMTP-Model"
 
 \end_inset
 
@@ -872,7 +1365,7 @@ key "WashStatUni"
 \end_inset
 
  as a test system.
- All data are taken from 
+ All data is taken from 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "WashStatUni"
@@ -906,7 +1399,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename D:/Dissertation/Papers/Cigre/Capture2.PNG
+	filename Capture2.PNG
 	scale 50
 
 \end_inset
@@ -915,7 +1408,7 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Portion of the system under study
@@ -1064,7 +1557,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Tower Configurations of lines of the area under study 
@@ -1095,7 +1588,7 @@ name "fig2"
 Creation Of Transient Cases And Preparation Of Cases For Training Of ANN
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Creation-Of-Transient"
+name "subsec:Creation-Of-Transient"
 
 \end_inset
 
@@ -1147,7 +1640,7 @@ No attempt is made to answer how far the local currents can be used to classify
 Creation of Fault Cases
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Creation-of-Fault"
+name "subsec:Creation-of-Fault"
 
 \end_inset
 
@@ -1216,7 +1709,7 @@ key "Terzija2004"
 Creation of Line Switching Cases
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Creation-of-Line switching cases"
+name "subsec:Creation-of-Line switching cases"
 
 \end_inset
 
@@ -1241,7 +1734,7 @@ For line switching cases, a batch for each line has been creating giving
 Creation of Lightning Strike Cases
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Creation-of-Lightning cases"
+name "subsec:Creation-of-Lightning cases"
 
 \end_inset
 
@@ -1277,7 +1770,7 @@ s have been varied which were set to 5 kA, 10 kA, 15KA, 20 kA and 30 kA.
 Building of Feature Vector of Transient Signature
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Building-of-Feature"
+name "subsec:Building-of-Feature"
 
 \end_inset
 
@@ -1339,7 +1832,48 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  Since the first one eighth of a cycle following the transient event is
  only sought, the details coefficients corresponding to that period are
  only obtained.
- Two modes out of the three modes are only used.
+ 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename reviewer's comments/Fig. 3.svg
+	width 16cm
+	height 22cm
+	keepAspectRatio
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure shows the mode1 current of a certain fault case at different fault
+ resistances.
+ The same fault type, fault location and incipient angle is evaluated but
+ at different fault resistances
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fault_resistance"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Two modes out of the three modes are only used.
  The details coefficients of one level of Mode2 and Mode3 are stacked on
  top of each other.
  It should be emphasized that building the n-dimensional vector this way
@@ -1376,6 +1910,68 @@ Having created n-dimensional vectors, the input for the ANN is ready.
 \end_layout
 
 \begin_layout Section
+Signal Analysis
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Signal-Analsysis"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even though ANN training is done offline, yet the principle proposed in
+ this paper is for online applications.
+ It should be noted that training has been done using hundreds of thousands
+ of cases.
+ For example, 8066 fault cases per line and a total of 54336 transient cases
+ have been used to train ANN as given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Creation-Of-Transient"
+
+\end_inset
+
+.
+ These cases encompass all variations of any transient that can occur on
+ a transmission line.
+ ATP/EMTP is mature enough that it can capture the actual system response.
+ A real event oscillography would look like the simulated case in EMTP as
+ long as the EMTP model is an accurate representation of the system.
+ It is not possible to exhaust all foreseen transient parameters, for example
+ it is not computationally feasible to include all values of fault resistance
+ into consideration.
+ However, it is evident that the oscillations present in the transient signal
+ corresponding to a fault case with a faults resistance of 20 Ω should have
+ oscillations that fall in between the same fault case but with a fault
+ resistance of 0 Ω and 100 Ω.
+ This notion of “in-betweenness” is illustrated in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:fault_resistance"
+
+\end_inset
+
+ .
+ As explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Solution-methodology"
+
+\end_inset
+
+, the transient signal is eventually translated into a vector that belongs
+ to the n-dimensional space.
+ Thus if the fault cases corresponding to 5%, 20%, 80% and 95% line length
+ can be linearly separated from all other transients, then the fault cases
+ corresponding to 50% line length should fall in the region of those fault
+ cases.
+ The same argument applies for all event types.
+ 
+\end_layout
+
+\begin_layout Section
 Results
 \begin_inset CommandInset label
 LatexCommand label
@@ -1391,7 +1987,7 @@ This section presents the results of the classification.
  In section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:LINE-IDENTIFICATION-IN faults"
+reference "subsec:LINE-IDENTIFICATION-IN faults"
 
 \end_inset
 
@@ -1399,7 +1995,7 @@ reference "sub:LINE-IDENTIFICATION-IN faults"
  In section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Line-Identification-in lightning "
+reference "subsec:Line-Identification-in lightning "
 
 \end_inset
 
@@ -1407,7 +2003,7 @@ reference "sub:Line-Identification-in lightning "
  In section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Line-Identification-in switching"
+reference "subsec:Line-Identification-in switching"
 
 \end_inset
 
@@ -1415,7 +2011,7 @@ reference "sub:Line-Identification-in switching"
  Finally, event type classification is provided in section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Transient-Event-Type"
+reference "subsec:Transient-Event-Type"
 
 \end_inset
 
@@ -1439,21 +2035,21 @@ reference "sec:Solution-methodology"
  In sections 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:LINE-IDENTIFICATION-IN faults"
+reference "subsec:LINE-IDENTIFICATION-IN faults"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Line-Identification-in switching"
+reference "subsec:Line-Identification-in switching"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Line-Identification-in lightning "
+reference "subsec:Line-Identification-in lightning "
 
 \end_inset
 
@@ -1463,7 +2059,7 @@ reference "sub:Line-Identification-in lightning "
  In section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Transient-Event-Type"
+reference "subsec:Transient-Event-Type"
 
 \end_inset
 
@@ -1478,14 +2074,13 @@ reference "sub:Transient-Event-Type"
  For the sampling frequency used in this paper, the dimension of the n-dimension
 al space is one hundred and sixty eight (168) if level 4 is used to build
  the feature vector, i.e, each modal current has 84 coefficients.
- 
 \end_layout
 
 \begin_layout Subsection
 LINE IDENTIFICATION IN CASE OF FAULTS 
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:LINE-IDENTIFICATION-IN faults"
+name "subsec:LINE-IDENTIFICATION-IN faults"
 
 \end_inset
 
@@ -1504,7 +2099,7 @@ This section provides the results for classification in case of faults only,
 First, six batches of faults are created as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Fault"
+reference "subsec:Creation-of-Fault"
 
 \end_inset
 
@@ -1566,7 +2161,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Faults Classification Accuracy - Numbers are Percentages.
@@ -1585,8 +2180,8 @@ name "table1"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1727,7 +2322,7 @@ Circuit (2) Line 25-27
 Line Identification in Case of Switching
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Line-Identification-in switching"
+name "subsec:Line-Identification-in switching"
 
 \end_inset
 
@@ -1740,7 +2335,7 @@ This section shows the results of classification if all transients are for
  Creating the switching events as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Line switching cases"
+reference "subsec:Creation-of-Line switching cases"
 
 \end_inset
 
@@ -1764,7 +2359,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Switching Classification Accuracy - Numbers are Percentages
@@ -1787,8 +2382,8 @@ name "table2"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1925,7 +2520,7 @@ Circuit (2) Line 25-27
 Line Identification in Case of Lightning Strikes
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Line-Identification-in lightning "
+name "subsec:Line-Identification-in lightning "
 
 \end_inset
 
@@ -1936,7 +2531,7 @@ name "sub:Line-Identification-in lightning "
 If all transient events are lightning only as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Lightning cases"
+reference "subsec:Creation-of-Lightning cases"
 
 \end_inset
 
@@ -1973,7 +2568,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Lightning Classification Accuracy - Numbers are Percentages
@@ -1996,8 +2591,8 @@ name "table3"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -2134,7 +2729,7 @@ Circuit (2) Line 25-27
 Transient Event Type Classification
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Transient-Event-Type"
+name "subsec:Transient-Event-Type"
 
 \end_inset
 
@@ -2148,21 +2743,21 @@ Lastly, the algorithm performance is shown when it comes to classification
  ANN is trained with all transient cases given in subsections 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Fault"
+reference "subsec:Creation-of-Fault"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Line switching cases"
+reference "subsec:Creation-of-Line switching cases"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Creation-of-Lightning cases"
+reference "subsec:Creation-of-Lightning cases"
 
 \end_inset
 
@@ -2221,7 +2816,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Transient Event Type Classification Accuracy - Numbers are Percentages.
@@ -2244,8 +2839,8 @@ name "tab4"
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -2320,6 +2915,110 @@ Switching
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Comparison to existing methods in literature
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Comparison-to-lit"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The major drawbacks of existing methods have been summarized in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Introduction"
+
+\end_inset
+
+.
+ In this section, the method proposed will be compared to existing methods
+ in literature that uses single end data to reach a decision regarding the
+ fault.
+ 
+\end_layout
+
+\begin_layout Standard
+Even though the subject of transmission line relaying based on high frequency
+ components has and continues to receive attention from academia and the
+ industry, a handful of papers studies transients other than faults and
+ their effect on the proposed methods.
+ 
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Martin2003"
+
+\end_inset
+
+, the details coefficients of all phase voltages and currents are fed to
+ ANN for training.
+ However, for the method to perform well, the high frequency transients
+ imposed on the fundamental voltage have to be measured, which is not feasible
+ if CVT is used as the bandwidth of CVTs don't exceed 1 kHz 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hou1996capacitive"
+
+\end_inset
+
+.
+ Additionally, the method ignores all transients types other than faults
+ which can mislead the scheme most of the times.
+ 
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Silva2006"
+
+\end_inset
+
+, the details coefficients of all phase voltages and currents are still
+ used to train the ANN in addition to using an energy quantity as a trip
+ restraint.
+ However, transients on the line being protected are being taken into considerat
+ion while training the ANN.
+ A drawback of this method is the need to perform many offline studies to
+ determine the threshold for the trip restraint.
+ Moreover, the method suffers from limited bandwidth of CVTs and CCVTs.
+ 
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "perera2011recognition"
+
+\end_inset
+
+, voltages have been abandoned for the purpose of classification due to
+ the aforementioned shortcomings of CVTs and CCVTs.
+ Additionally, transients on adjacent lines have been ignored during training.
+ However, the use of energy of various levels as the sole discriminant for
+ training the classifier can cause the classifier to confuse transients
+ on adjacent lines with the transients on the line being protected.
+ 
+\end_layout
+
+\begin_layout Standard
+In all methods mentioned above, at least one quarter of a cycle is needed
+ to reach a secure decision.
+ On the other hand, the approach proposed in this paper uses only one half
+ of that to reach a secure decision about whether the transient belongs
+ to the line being protected and whether the transient is a fault.
+ 
 \end_layout
 
 \begin_layout Section
