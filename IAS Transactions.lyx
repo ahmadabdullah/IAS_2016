@@ -93,7 +93,7 @@
 \begin_body
 
 \begin_layout Title
-Towards a New Paradigm for Ultrafast Transmission Line Relaying
+Ultrafast Transmission Line Fault Detection Using a DWT Based ANN
 \end_layout
 
 \begin_layout Author
@@ -335,8 +335,8 @@ key "Lyons1997"
 .
  FFT transform requires the signal be stationary in the wide sense for the
  calculation of coefficients to be accurate, i.e.
- the signal can’t have any temporal variations for the calculation of coefficien
-ts to be correct and accurate.
+ the signal cannot have any temporal variations for the calculation of coefficie
+nts to be correct and accurate.
  Short Window Fourier Transform 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -360,7 +360,7 @@ key "Mallat1989"
 \end_inset
 
  to solve some of the problems inherent in Fourier transform analysis methods.
- Wavelets
+ Wavelets 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "daubechies1990wavelet"
@@ -647,7 +647,7 @@ key "Boggess2009"
  The frequency bands are determined by the number of levels the signal is
  sought to be analyzed.
  The word independent means that one cannot derive one level from another,
- i.e., level 2 can’t be derived from level 1.
+ i.e., level 2 cannot be derived from level 1.
  The frequency of each level depends on the sampling frequency.
  Nyquist theory still holds here.
  The highest frequency seen in the signal will be at most equal to half
@@ -769,7 +769,7 @@ Classification with Neural Networks
 \end_layout
 
 \begin_layout Standard
-Artificial Neural networks is very well known tool for classification.
+ANN is very well established tool for classification.
  The classification done in this paper is not probabilistic but rather determini
 stic.
  The inputs are vectors in the n-dimensional space, where n is the size
@@ -1030,7 +1030,7 @@ For any fault occurring on a transmission line, the transient generated
 
 \begin_layout Standard
 The same argument not only applies to faults but also apply to switching
- events, lightning strikes on transmission lines.
+ events and lightning strikes on transmission lines.
  The author calls faults, lighting strikes, and switching events the transient
  event types.
  Evidently, the frequency content of faults –on all lines- would be different
@@ -1087,9 +1087,9 @@ Historical treatment of traveling waves - as used in the ladder diagram
  for example- treat them as if they were pulses traveling down the line
  with no regard to the oscillatory components they carry.
  A certain mathematical entity -which is the feature vector to be defined
- in section 
+ in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Building-of-Feature"
 
 \end_inset
@@ -1135,9 +1135,9 @@ key "Zurada1992"
  space to another m-dimensional space.
  In the case in hand, the feature vector is mapped which is n-dimensional
  space to another space.
- These spaces will be described in section 
+ These spaces will be described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Results"
 
 \end_inset
@@ -1167,9 +1167,9 @@ key "Hedman1965,Hedman1965b"
 .
  Modal transformation will decouple current waveforms thus eliminating mutual
  coupling and untransposed line effects.
- The modal matrix will be explained in section 
+ The modal matrix will be explained in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Building-of-Feature"
 
 \end_inset
@@ -1255,9 +1255,9 @@ The outcome of the DWT is a series of coefficients for each mode and for
  The coefficients of one level of the two aerial modes of currents are stacked
  on top of each other to build one feature vector that will be used to train
  the network.
- Building the training vector will be explained in section 
+ Building the training vector will be explained in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Building-of-Feature"
 
 \end_inset
@@ -1318,16 +1318,16 @@ name "sec:Simulation-Platform"
 \end_layout
 
 \begin_layout Standard
-In this section, the ATP/EMTP model is presented in subsection 
+In this section, the ATP/EMTP model is presented in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:EMTP-Model"
 
 \end_inset
 
- while in subsection 
+ while in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Creation-Of-Transient"
 
 \end_inset
@@ -1709,7 +1709,7 @@ key "Terzija2004"
 Creation of Line Switching Cases
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Creation-of-Line switching cases"
+name "subsec:Creation-of-Line-switching-cases"
 
 \end_inset
 
@@ -1734,7 +1734,7 @@ For line switching cases, a batch for each line has been creating giving
 Creation of Lightning Strike Cases
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Creation-of-Lightning cases"
+name "subsec:Creation-of-Lightning-cases"
 
 \end_inset
 
@@ -1941,7 +1941,7 @@ reference "subsec:Creation-Of-Transient"
  long as the EMTP model is an accurate representation of the system.
  It is not possible to exhaust all foreseen transient parameters, for example
  it is not computationally feasible to include all values of fault resistance
- into consideration.
+ into consideration in the training stage.
  However, it is evident that the oscillations present in the transient signal
  corresponding to a fault case with a faults resistance of 20 Ω should have
  oscillations that fall in between the same fault case but with a fault
@@ -1968,6 +1968,8 @@ reference "sec:Solution-methodology"
  corresponding to 50% line length should fall in the region of those fault
  cases.
  The same argument applies for all event types.
+ This idea of “in-betweenness” makes this approach applicable to online
+ applications as long as the extreme cases are included in the offline training.
  
 \end_layout
 
@@ -1984,33 +1986,33 @@ name "sec:Results"
 
 \begin_layout Standard
 This section presents the results of the classification.
- In section 
+ In 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:LINE-IDENTIFICATION-IN faults"
+LatexCommand formatted
+reference "subsec:LINE-IDENTIFICATION-IN-faults"
 
 \end_inset
 
 , the results of classification in case all events were faults are shown.
- In section 
+ In 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Line-Identification-in lightning "
+LatexCommand formatted
+reference "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
  classification output in case of all events were lighting strikes is shown.
- In section 
+ In 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Line-Identification-in switching"
+LatexCommand formatted
+reference "subsec:Line-Identification-in-switching"
 
 \end_inset
 
  results in case events were all line switching are presented.
- Finally, event type classification is provided in section 
+ Finally, event type classification is provided in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Transient-Event-Type"
 
 \end_inset
@@ -2020,9 +2022,9 @@ reference "subsec:Transient-Event-Type"
 \end_layout
 
 \begin_layout Standard
-In section 
+In 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Solution-methodology"
 
 \end_inset
@@ -2032,33 +2034,33 @@ reference "sec:Solution-methodology"
  The dimension of the n-dimensional space is fixed by the length of the
  feature vector while the dimension of the m-dimensional space is different
  depending on which space we want to map the n-dimensional space to.
- In sections 
+ In 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:LINE-IDENTIFICATION-IN faults"
+LatexCommand formatted
+reference "subsec:LINE-IDENTIFICATION-IN-faults"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Line-Identification-in switching"
+LatexCommand formatted
+reference "subsec:Line-Identification-in-switching"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Line-Identification-in lightning "
+LatexCommand formatted
+reference "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
  below, the events are being mapped to the lines causing them which amounts
  to a mapping from the n-dimensional space to a 6-dimesnioal space (one
  dimension per line, line 25-27 counted twice for the double circuit).
- In section 
+ In 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Transient-Event-Type"
 
 \end_inset
@@ -2077,10 +2079,10 @@ al space is one hundred and sixty eight (168) if level 4 is used to build
 \end_layout
 
 \begin_layout Subsection
-LINE IDENTIFICATION IN CASE OF FAULTS 
+Line Identification in Case of Faults 
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:LINE-IDENTIFICATION-IN faults"
+name "subsec:LINE-IDENTIFICATION-IN-faults"
 
 \end_inset
 
@@ -2322,7 +2324,7 @@ Circuit (2) Line 25-27
 Line Identification in Case of Switching
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Line-Identification-in switching"
+name "subsec:Line-Identification-in-switching"
 
 \end_inset
 
@@ -2335,7 +2337,7 @@ This section shows the results of classification if all transients are for
  Creating the switching events as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Creation-of-Line switching cases"
+reference "subsec:Creation-of-Line-switching-cases"
 
 \end_inset
 
@@ -2520,7 +2522,7 @@ Circuit (2) Line 25-27
 Line Identification in Case of Lightning Strikes
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Line-Identification-in lightning "
+name "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
@@ -2531,7 +2533,7 @@ name "subsec:Line-Identification-in lightning "
 If all transient events are lightning only as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Creation-of-Lightning cases"
+reference "subsec:Creation-of-Lightning-cases"
 
 \end_inset
 
@@ -2559,7 +2561,7 @@ reference "table3"
 
 \end_inset
 
-, the algorithm can’t still distinguish between the events on any of the
+, the algorithm cannot still distinguish between the events on any of the
  circuits of line 25-27 due to the symmetry with respect to the line being
  studied.
 \begin_inset Float table
@@ -2740,24 +2742,24 @@ name "subsec:Transient-Event-Type"
 Lastly, the algorithm performance is shown when it comes to classification
  between different transients types.
  The types of studies in this paper are faults, line switching and lightning.
- ANN is trained with all transient cases given in subsections 
+ ANN is trained with all transient cases given in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Creation-of-Fault"
 
 \end_inset
 
 , 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Creation-of-Line switching cases"
+LatexCommand formatted
+reference "subsec:Creation-of-Line-switching-cases"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Creation-of-Lightning cases"
+LatexCommand formatted
+reference "subsec:Creation-of-Lightning-cases"
 
 \end_inset
 
@@ -2765,7 +2767,7 @@ reference "subsec:Creation-of-Lightning cases"
  The output is shown in table 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab4"
+reference "table4"
 
 \end_inset
 
@@ -2775,7 +2777,7 @@ reference "tab4"
  The ANN used for table 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab4"
+reference "table4"
 
 \end_inset
 
@@ -2783,7 +2785,7 @@ reference "tab4"
  It should be pointed out that in table 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab4"
+reference "table4"
 
 \end_inset
 
@@ -2802,7 +2804,7 @@ It is now a straightforward manner to construct a two layer feedforward
  switching or lightning in table 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab4"
+reference "table4"
 
 \end_inset
 
@@ -2822,7 +2824,7 @@ status collapsed
 Transient Event Type Classification Accuracy - Numbers are Percentages.
 \begin_inset CommandInset label
 LatexCommand label
-name "tab4"
+name "table4"
 
 \end_inset
 
@@ -2963,7 +2965,7 @@ key "Martin2003"
  ANN for training.
  However, for the method to perform well, the high frequency transients
  imposed on the fundamental voltage have to be measured, which is not feasible
- if CVT is used as the bandwidth of CVTs don't exceed 1 kHz 
+ if CVTs are used as the bandwidth of CVTs do not exceed 1 kHz 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "hou1996capacitive"
@@ -2991,7 +2993,7 @@ key "Silva2006"
 ion while training the ANN.
  A drawback of this method is the need to perform many offline studies to
  determine the threshold for the trip restraint.
- Moreover, the method suffers from limited bandwidth of CVTs and CCVTs.
+ Moreover, the method suffers from limited bandwidth of the CVTs.
  
 \end_layout
 
@@ -3011,7 +3013,22 @@ key "perera2011recognition"
  identify the line causing the transient event.
  Additionally, the use of energy as a trip restraint requires a detailed
  study on the proximity of the transient to the measuring CT.
- 
+ The results in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "perera2011recognition"
+
+\end_inset
+
+ is a special case of the results in this paper and correspond to the results
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Transient-Event-Type"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
