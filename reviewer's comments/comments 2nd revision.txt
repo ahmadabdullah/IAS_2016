@@ -1,0 +1,75 @@
+Dear Mr. Abdullah:
+
+Manuscript ID 2016-PSPC-0365.R1 entitled "Ultrafast Transmission Line Fault Detection Using a DWT Based ANN" that you submitted for peer evaluation by the IEEE-IAS Power System Protection Committee, has been reviewed.  The comments from reviewer(s) are included at the bottom of this letter.
+
+The reviewers have declined to make a recommendation on your paper in its present form.   You may submit a revised manuscript that takes into consideration the reviewers comments.  Please note that submitting a revised manuscript does not guarantee eventual acceptance, and that your resubmission will be evaluated by the reviewers before a decision is rendered.
+
+The attached document describes the process for submitting a revised manuscript, as well as recently changes in IEEE rules regarding eligibility of conference papers for republication.  Please read this document and follow the instructions carefully.
+
+IEEE considers a revised manuscript to be a new manuscript, so you MUST execute a copyright transfer for the revised manuscript after you complete the submission.  There will be link to the e-Copyright application on the confirmation page that appears after you click "Submit".
+
+The deadline for resubmission of your manuscript is 30 days from now.  We are trying to facilitate timely publication of papers, and your revised manuscript must be submitted before 20-May-2017.
+
+Sincerely,
+
+Rob Hoerauf,
+Associate Editor and Papers Review Chair
+IEEE-IAS Power System Protection Committee
+
+[D20]
+
+Reviewer(s)' Comments to Author:
+
+Associate Editor
+Comments to the Author:
+You are getting closer, and thank you for the revisions.  Please address the latest reveiwers' comments.
+
+Reviewer: 1
+
+Comments to the Author
+Based on the revisions and manuscript I have the following observations.
+1. In response sheet, the authors say that 1/8th of the cycle is used for judging, while 1.5 ms is the time existing system takes to operate. The comparison should be either for judging or operating in both the cases.
+2. The time of 1.5 ms may involve the hardware delays or any other process, while the proposed approach uses only the time on the EMTP. So, the authors need to add such practical delays in the system. If not, the author needs to highlight the scenarios of testing in both the cases.
+3. The quality of figures is very poor and it needs a lot of improvement.
+4. The author need to use some latest references to keep track of latest research in the area.
+5. Since, in field noise may be present. The study needs comprehensive analysis with noise in the measurements.
+6. The new section on comparison to existing method should have some statistical comparison.
+
+Reviewer: 2
+
+Comments to the Author
+1.There are small typing errors that needs to be corrected
+  (- third paragraph in the introduction, second sentence space needed after "Wavelets"  ###
+   - sixth paragraph fourth sentence, should be prearrange as "The proposed algorithm ..."
+   - second paragraph in the Section II, second sentence, double "the") ###
+2.The author should provide better quality of the pictures in the paper
+
+Reviewer: 3
+
+Comments to the Author
+please see comments to the editor.
+
+Reviewer: 4
+
+Comments to the Author
+Please address the following issues.
+
+- Please review equations 2 & 3. They appear to have errors.
+
+- The font size in Figure 4 legends could benefit from an increase.
+
+- On page 7, there is a section listing currents "5 kA, 10 kA, 15KA, ...". Please revise to be "5 kA, 10 kA, 15 kA, ..."
+
+- I could not find the explicit acronym definition for ANN. It is easy to interpret, but it may be helpful to define it after the first use.
+
+- On page 1, column two "FTT transform" is redundant and should be simply "FFT"
+
+- On page 2, column one the use of "section VI" needs section symbol. There were additional instances elsewhere in the manuscript where this symbol was missing. Please try to be consistent throughout the manuscript.
+
+- On page 2, column one "The paper is organized as follows: A quick overview:" a should not be capitalized.
+
+- On page 2, column one "Signal Analysis" analysis should not be capitalized.
+
+- On page 2, column two "The equation for the detail coefficients are" should be "...coefficients is".
+
+- Finally, a more general request: please review the manuscript for grammar. The new section highlighted in yellow in particular. The above comments list only a few of the minor grammatical issues identified. 

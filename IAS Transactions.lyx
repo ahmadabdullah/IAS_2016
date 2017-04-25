@@ -175,7 +175,8 @@ gs not only as a principle but also as an application as well.
  Discrete Wavelet Transform (DWT) is used to extract high frequency components
  of the two aerial modal currents.
  A feature vector is built using the wavelets details coefficients of one
- level of the aerial modes and used to train a neural network.
+ level of the aerial modes and used to train an artificial neural network
+ (ANN).
  Results show that the classes corresponding to each transient event type
  on the protected line and its adjacent lines are almost linearly separable
  from each other.
@@ -333,8 +334,8 @@ key "Lyons1997"
 \end_inset
 
 .
- FFT transform requires the signal be stationary in the wide sense for the
- calculation of coefficients to be accurate, i.e.
+ FFT requires the signal be stationary in the wide sense for the calculation
+ of coefficients to be accurate, i.e.
  the signal cannot have any temporal variations for the calculation of coefficie
 nts to be correct and accurate.
  Short Window Fourier Transform 
@@ -413,8 +414,8 @@ key "Magnago1998"
 \end_layout
 
 \begin_layout Standard
-The use of ANN for fault classification and detection has been given in
- 
+The use of artificial neural network for fault classification and detection
+ has been given in 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Dalstein1995,Kezunovic1995,oleskovicz2001complete"
@@ -518,7 +519,7 @@ In this paper, the wavelets details coefficients are directly used to train
  It is shown that using the details coefficients of a subset local currents
  only, distinction can be made between fault and non-fault conditions on
  a protected transmission line without using any voltage signals at all.
- The algorithm proposed can also distinguish between faults on the protected
+ The proposed algorithm can also distinguish between faults on the protected
  line and faults on adjacent lines.
  The algorithm provided can not only tell the difference between forward
  and reverse faults but also can determine which adjacent line is faulted.
@@ -541,7 +542,7 @@ In this paper, the wavelets details coefficients are directly used to train
 \end_layout
 
 \begin_layout Standard
-The paper is organized as follows: A quick overview of both the DWT and
+The paper is organized as follows: a quick overview of both the DWT and
  ANN is offered in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -566,8 +567,8 @@ reference "sec:Solution-methodology"
 \end_inset
 
 .
- Simulation platform which consists of a description of EMTP model and the
- creation of transient cases for ANN training is described in 
+ The simulation platform which consists of a description of EMTP model and
+ the creation of transient cases for ANN training is described in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Simulation-Platform"
@@ -578,12 +579,12 @@ reference "sec:Simulation-Platform"
  The structure of the feature vector is given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Building-of-Feature"
+reference "sec:Building-of-Feature"
 
 \end_inset
 
 .
- Signal Analysis is provided in 
+ Signal analysis is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Signal-Analsysis"
@@ -599,7 +600,8 @@ reference "sec:Results"
 \end_inset
 
 .
- Comparison to existing methods in literature is offered in 
+ Comparison between the method proposed in this paper and existing methods
+ in literature is offered in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Comparison-to-lit"
@@ -622,8 +624,8 @@ name "sec:Background"
 \end_layout
 
 \begin_layout Standard
-In this section, an overview of both DWT and ANN as used in this paper is
- provided.
+In this section, a brief overview of both DWT and ANN as used in this paper
+ is provided.
  
 \end_layout
 
@@ -642,32 +644,33 @@ key "Boggess2009"
 .
  The transform takes the signal and applies low and high pass filters to
  it.
- The transform converts the original signal into an independent set of signals
- spanning certain frequency bands.
- The frequency bands are determined by the number of levels the signal is
- sought to be analyzed.
- The word independent means that one cannot derive one level from another,
+ The transform converts the original signal into independent signals each
+ of which spanning a certain frequency band.
+ The frequency bands are determined by the number of levels the original
+ signal is sought to be analyzed and each level corresponds to a unique
+ frequency band.
+ The word independent means that one level cannot be derived from another,
  i.e., level 2 cannot be derived from level 1.
- The frequency of each level depends on the sampling frequency.
- Nyquist theory still holds here.
- The highest frequency seen in the signal will be at most equal to half
- of the sampling frequency.
+ The frequency band of each level depends on the sampling frequency and
+ Nyquist theory.
+ The highest frequency that can be seen in the decomposed signal will be
+ at most equal to half of the sampling frequency.
  Given a certain sampling frequency, the dyadic transform will first apply
- a high and low pass filter to the signal resulting in two signals.
+ high and low pass filters to the signal resulting in two signals.
  The signal corresponding to the output of the high pass filter is called
  level 1 and the other signal is called approximation 1.
  Both of those signals are independent.
- One can stop at this step or can apply another low and high pass filter
- to the first approximation to get level 2 and approximation 2.
+ One can stop at this step or can apply high and low pass filters to the
+ first approximation to get level 2 and approximation 2.
  Level 2 will span a frequency band corresponding to the upper half of the
  frequency band of approximation 1 while approximation 2 will occupy the
  lower frequency band.
- Continuing this manner by applying successive low and high pass filters,
+ Continuing this manner, by applying successive low and high pass filters,
  one obtains a set of levels - also called details - and one last approximation.
  In theory the last approximation should correspond to a pure sine wave
- assuming the high frequency components imposed on the power frequency have
- high frequency not to be included in the frequency band of the last approximati
-on.
+ assuming that the high frequency components imposed on the power frequency
+ have frequencies that are not included in the frequency band of the last
+ approximation.
  Taking a numerical example, if one uses 200 kHz sampling frequency, then
  the resulting DWT decomposition is shown in 
 \begin_inset CommandInset ref
@@ -677,29 +680,7 @@ reference "fig:DWT-example"
 \end_inset
 
 .
- The equation used for the transform is given below where φ(t) is the wavelet
- used, parameter 
-\begin_inset Quotes eld
-\end_inset
-
-a
-\begin_inset Quotes erd
-\end_inset
-
- causes scaling (which is level determination) and 
-\begin_inset Quotes eld
-\end_inset
-
-b
-\begin_inset Quotes erd
-\end_inset
-
- causes shift in time.
- In practice it is not needed to apply the transform all over the infinite
- time line.
- Since wavelets have a strong localization property then it is only needed
- to apply the transform to the time period under study.
- The equation for the details coefficients are given below in 
+ The details coefficients of the DWT transform is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:DWT_eq"
@@ -713,7 +694,36 @@ key "Boggess2009"
 
 \end_inset
 
+ where 
+\begin_inset Formula $\varphi(t)$
+\end_inset
 
+ is the mother wavelet used, 
+\begin_inset Formula $f(t)$
+\end_inset
+
+ is the signal to be analyzed, parameter 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+ causes scaling (which determines the level) and 
+\begin_inset Quotes eld
+\end_inset
+
+b
+\begin_inset Quotes erd
+\end_inset
+
+ causes shift in time.
+ In practice it is not needed to apply the transform all over the infinite
+ time line.
+ Since wavelets have a strong localization property then it is only needed
+ to apply the transform to the time period under study.
+ 
 \begin_inset Float figure
 placement h
 wide false
@@ -765,19 +775,20 @@ Wf\left(a,b\right)=\frac{1}{\sqrt{a}}\times\int_{-\infty}^{\infty}f\left(t\right
 \end_layout
 
 \begin_layout Subsection
-Classification with Neural Networks
+Classification with Artificial Neural Networks
 \end_layout
 
 \begin_layout Standard
 ANN is very well established tool for classification.
  The classification done in this paper is not probabilistic but rather determini
 stic.
- The inputs are vectors in the n-dimensional space, where n is the size
- of the input vectors, that need to be mapped to another vector space the
- size of which is determined by the number of output classes one wants to
- map to.
- In simple terms this classification can be shown to be carried out by ANN
- 
+ The inputs to ANN are vectors in the n-dimensional space, where n is the
+ size of each input vector, that need to be mapped to another output vector
+ space.
+ The size of the output vector space is determined by the number of output
+ classes one wants to map the input vectors to.
+ In simple terms, this classification can be shown to be carried out by
+ ANN 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Zurada1992"
@@ -785,8 +796,8 @@ key "Zurada1992"
 \end_inset
 
 .
- All neural networks in this paper consist of three layers: an input layer,
- a hidden layer and output layer.
+ All ANNs in this paper consist of three layers: an input layer, a hidden
+ layer and output layer.
  Each layer consists of a certain number of neurons.
  The connections between those neurons are called synapses.
  The input layer consists of junctions that represent the input.
@@ -802,24 +813,25 @@ n
  The hidden layer can consist of any number of neurons.
  The classification accuracy is greatly affected by the number of neurons
  in the hidden layer.
- The output layer consists of neurons that are activated by a function the
- input of which comes from the hidden layer.
+ The output layer consists of neurons each of which is activated by a function.
+ The inputs to this function come from the hidden layer.
  Classes or more specifically output classes are the patterns one wants
  to map the input to.
  The main idea behind ANN classification is that if the inputs belong to
  linearly separable regions of the n-dimensional space then using ANN, one
- can draw planes in that space so that the space between those plane contain
- only one region and each region is then mapped to one of the output classes
- using the activation function in the output neuron.
- The weights or more specifically synaptic weights of the synapsis are adjusted
- during the training phase such that the vector space is divided to regions
+ can draw hyperplanes in that space so that the space between those hyperplanes
+ contain only one region and each region is then mapped to one of the output
+ classes using the activation function in the output neuron.
+ The weights or more specifically synaptic weights of the synapses are adjusted
+ during the training phase such that the vector space is divided into regions
  each of which corresponds to certain class.
  Any output neuron receives the input vector through synaptic weights.
- The input is then applied to the function of the neuron which has the form
- g(x)=0 which is an equation of the plane in the n-dimensional space.
+ The input is then applied to the function of the neuron that has the form
+ g(x)=0 which is an equation of the hyperplanes in the n-dimensional space.
  The function g(x)=0 is realized in the ANN by the neurons and the synaptic
  weights.
- The neuron output is activated only if the output is positive.
+ The output of the neuron is activated only if g(x) is positive for the
+ associated input vector.
  In this paper, the author uses the widely known and used backward propagation
  algorithm for the calculation of weights.
  Knowledge is stored in the network through those weights.
@@ -846,7 +858,7 @@ name "sec:Rationale-Behind-the"
 \end_layout
 
 \begin_layout Standard
-When a fault (or any transient event) occurs, it launches a traveling wave
+When a fault or any transient event occurs, it launches a traveling wave
  as well as high frequency oscillatory components.
  Traveling waves can be easily quantified as they arrive at the line terminals
  but the high frequency oscillatory components cannot.
@@ -857,8 +869,8 @@ When a fault (or any transient event) occurs, it launches a traveling wave
 
 \begin_layout Standard
 At this point, the author needs to introduce new terminology.
- Speaking about a certain transmission line, the author calls a fault on
- that line a fault case.
+ Speaking of a certain transmission line, the author calls a fault on that
+ line a fault case.
  A fault case has its parameters.
  Those parameters are: incipient angle, fault resistance, fault type and
  fault location.
@@ -880,7 +892,7 @@ key "Grainger1994"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\frac{dV}{dx}=R\times I+L\times\frac{dI}{dt}\label{eq:1}
+\frac{\partial V}{\partial x}=R\times I+L\times\frac{\partial I}{\partial t}\label{eq:1}
 \end{equation}
 
 \end_inset
@@ -888,7 +900,7 @@ key "Grainger1994"
 
 \begin_inset Formula 
 \begin{equation}
-\frac{dI}{dx}=R\times V+L\times\frac{dV}{dt}\label{eq:2}
+\frac{\partial I}{\partial x}=G\times V+C\times\frac{\partial V}{\partial t}\label{eq:2}
 \end{equation}
 
 \end_inset
@@ -901,11 +913,11 @@ Where:
 \end_layout
 
 \begin_layout Itemize
-I, V are the current and the voltage
+I, V are the current and the voltage anywhere on the line
 \end_layout
 
 \begin_layout Itemize
-R is the resistance per unit length of the line
+R, G is the resistance and conductance per unit length of the line
 \end_layout
 
 \begin_layout Itemize
@@ -939,17 +951,17 @@ reference "eq:2"
  Using infinite time series expansion would mystify the solution, because
  the author’s intention is to analyze the frequency content of the signal
  as this content changes over time.
- Application of Laplace and Fourier transforms to those equations gives
- out integrals that yet to be solved formally.
+ Application of Laplace and Fourier transforms to those equations produces
+ integrals that yet to be solved formally.
  Moreover, when a three phase line is studied, the above equations become
  six equations (two equations for each phase: a voltage and current equation).
- And those equations are interdependent which makes decoupling them hard
- undertaking, if not impossible in most cases.
+ Those six equations are interdependent.
+ Thus, decoupling them is hard undertaking if not impossible in most cases.
  If we have mutual coupling between two lines sharing the same tower, then
- we have 3 more equations making them a total of nine equations.
- And this is only for one line.
- Those equations then need to be solved simultaneously along with all other
- equations in the system.
+ we have three more equations making them a total of nine equations.
+ Bearing in mind that those nine equations are for one line only, those
+ equations then need to be solved simultaneously along with all other equations
+ in the system.
  For today power systems which consist of thousands of lines, solving all
  equations analytically in a closed form is behind human ingenuity.
  
@@ -959,8 +971,8 @@ reference "eq:2"
 The main aim is to detect the fault once it is initiated.
  It is very apparent that high frequency fault generated transients are
  different for each fault case on a specific line.
- This is because each fault case corresponding to a specific line has its
- set of equations as given in 
+ This is because each fault case on a specific line has its set of equations
+ as given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:1"
@@ -974,7 +986,7 @@ reference "eq:2"
 
 \end_inset
 
- above with its unique boundary (lines connected to it) and initial conditions.
+ with unique boundary (lines connected to it) and initial conditions.
  Moreover, the same fault case on different lines will cause different fault
  generated transients because each case has its own boundary and initial
  conditions, which is different for all neighboring lines.
@@ -994,7 +1006,7 @@ Since the author argues that those frequencies -which change over time-
  that this difference can be attained and this is done in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Building-of-Feature"
+reference "sec:Building-of-Feature"
 
 \end_inset
 
@@ -1019,10 +1031,10 @@ key "Zurada1992"
 \begin_layout Standard
 For any fault occurring on a transmission line, the transient generated
  frequency components depend on the initial and the boundary conditions
- (the lines connected the faulted line).
+ (the lines connected to the faulted line).
  Since by definition all adjacent lines are different then the frequency
- generated transients for faults on transmission lines will be unique for
- each line.
+ generated transients for faults on each transmission line will be unique
+ for each line.
  The question is whether those frequency components can be combined in a
  certain way to form a pattern to be recognized.
  
@@ -1031,13 +1043,13 @@ For any fault occurring on a transmission line, the transient generated
 \begin_layout Standard
 The same argument not only applies to faults but also apply to switching
  events and lightning strikes on transmission lines.
- The author calls faults, lighting strikes, and switching events the transient
- event types.
- Evidently, the frequency content of faults –on all lines- would be different
- from switching which in turn different from lighting because the equations
- governing the solutions are always different because of the different transient
- event type and the different boundary and initial conditions.
- Those events can then be first recognized and then the event can be traced
+ The transient event types that are studied in this paper are faults, lightning
+ strikes, and line switching.
+ Evidently, the frequency content of faults –on all lines- should be different
+ from switching which in turn different from lightning because the equations
+ governing the solutions are always different as different transient event
+ types have different boundary and initial conditions.
+ Those events types can be first recognized and then the event can be traced
  back to the line originating it as given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1090,12 +1102,12 @@ Historical treatment of traveling waves - as used in the ladder diagram
  in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Building-of-Feature"
+reference "sec:Building-of-Feature"
 
 \end_inset
 
-- is derived from the oscillatory components and called the the transient
- signature of the event.
+- is derived from the oscillatory components and called the transient signature
+ of the event.
  The transients that are studied in this paper are lightning, line switching
  and faults.
  At a certain terminal of the line which is typically a relay location,
@@ -1170,7 +1182,7 @@ key "Hedman1965,Hedman1965b"
  The modal matrix will be explained in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Building-of-Feature"
+reference "sec:Building-of-Feature"
 
 \end_inset
 
@@ -1258,7 +1270,7 @@ The outcome of the DWT is a series of coefficients for each mode and for
  Building the training vector will be explained in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Building-of-Feature"
+reference "sec:Building-of-Feature"
 
 \end_inset
 
@@ -1399,8 +1411,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Capture2.PNG
-	scale 50
+	filename System under study.svg
+	scale 40
 
 \end_inset
 
@@ -1542,7 +1554,7 @@ key "greenwood1991electrical"
  which are extremely important in high frequency transient studies.
  
 \begin_inset Float figure
-placement p
+placement h
 wide false
 sideways false
 status collapsed
@@ -1550,7 +1562,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Towers.tiff
+	filename Tower Configurations.svg
 	scale 35
 	clip
 
@@ -1757,7 +1769,7 @@ For lightning strike cases a batch of each line has been again created.
 
 .
  The rising and tailing times are kept constant during simulations but amplitude
-s have been varied which were set to 5 kA, 10 kA, 15KA, 20 kA and 30 kA.
+s have been varied which were set to 5 kA, 10 kA, 15 kA, 20 kA and 30 kA.
  Striking distances were the same as the ones used for fault batches: 5%,
  15%, 35%, 50%, 65%, 80% and 95% which are all percentages of total line
  length.
@@ -1770,7 +1782,7 @@ s have been varied which were set to 5 kA, 10 kA, 15KA, 20 kA and 30 kA.
 Building of Feature Vector of Transient Signature
 \begin_inset CommandInset label
 LatexCommand label
-name "subsec:Building-of-Feature"
+name "sec:Building-of-Feature"
 
 \end_inset
 
@@ -1834,18 +1846,17 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  only obtained.
  
 \begin_inset Float figure
-placement H
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename reviewer's comments/Fig. 3.svg
-	width 16cm
+	width 10cm
 	height 22cm
-	keepAspectRatio
 
 \end_inset
 
@@ -2001,7 +2012,7 @@ reference "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
- classification output in case of all events were lighting strikes is shown.
+ classification output in case of all events were lightning strikes is shown.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2791,7 +2802,8 @@ reference "table4"
 
  most lightning strikes with amplitude 5000 Amp on line 23-22 have been
  misclassified for faults.
- A 5000 Amp lighting strike is unlikely in real world lightning strike cases.
+ A 5000 Amp lightning strike is unlikely in real world lightning strike
+ cases.
  If we remove all 5000 Amp strikes from training, a one hundred accurate
  classification accuracy is achieved for event type classification.
 \end_layout

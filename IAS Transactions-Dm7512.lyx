@@ -175,8 +175,7 @@ gs not only as a principle but also as an application as well.
  Discrete Wavelet Transform (DWT) is used to extract high frequency components
  of the two aerial modal currents.
  A feature vector is built using the wavelets details coefficients of one
- level of the aerial modes and used to train an artificial neural network
- (ANN).
+ level of the aerial modes and used to train a neural network.
  Results show that the classes corresponding to each transient event type
  on the protected line and its adjacent lines are almost linearly separable
  from each other.
@@ -334,8 +333,8 @@ key "Lyons1997"
 \end_inset
 
 .
- FFT requires the signal be stationary in the wide sense for the calculation
- of coefficients to be accurate, i.e.
+ FFT transform requires the signal be stationary in the wide sense for the
+ calculation of coefficients to be accurate, i.e.
  the signal cannot have any temporal variations for the calculation of coefficie
 nts to be correct and accurate.
  Short Window Fourier Transform 
@@ -414,8 +413,8 @@ key "Magnago1998"
 \end_layout
 
 \begin_layout Standard
-The use of artificial neural network for fault classification and detection
- has been given in 
+The use of ANN for fault classification and detection has been given in
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Dalstein1995,Kezunovic1995,oleskovicz2001complete"
@@ -519,7 +518,7 @@ In this paper, the wavelets details coefficients are directly used to train
  It is shown that using the details coefficients of a subset local currents
  only, distinction can be made between fault and non-fault conditions on
  a protected transmission line without using any voltage signals at all.
- The proposed algorithm can also distinguish between faults on the protected
+ The algorithm proposed can also distinguish between faults on the protected
  line and faults on adjacent lines.
  The algorithm provided can not only tell the difference between forward
  and reverse faults but also can determine which adjacent line is faulted.
@@ -542,7 +541,7 @@ In this paper, the wavelets details coefficients are directly used to train
 \end_layout
 
 \begin_layout Standard
-The paper is organized as follows: a quick overview of both the DWT and
+The paper is organized as follows: A quick overview of both the DWT and
  ANN is offered in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -584,7 +583,7 @@ reference "sec:Building-of-Feature"
 \end_inset
 
 .
- Signal analysis is provided in 
+ Signal Analysis is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Signal-Analsysis"
@@ -775,20 +774,19 @@ Wf\left(a,b\right)=\frac{1}{\sqrt{a}}\times\int_{-\infty}^{\infty}f\left(t\right
 \end_layout
 
 \begin_layout Subsection
-Classification with Artificial Neural Networks
+Classification with Neural Networks
 \end_layout
 
 \begin_layout Standard
 ANN is very well established tool for classification.
  The classification done in this paper is not probabilistic but rather determini
 stic.
- The inputs to ANN are vectors in the n-dimensional space, where n is the
- size of each input vector, that need to be mapped to another output vector
- space.
- The size of the output vector space is determined by the number of output
- classes one wants to map the input vectors to.
- In simple terms, this classification can be shown to be carried out by
- ANN 
+ The inputs are vectors in the n-dimensional space, where n is the size
+ of the input vectors, that need to be mapped to another vector space the
+ size of which is determined by the number of output classes one wants to
+ map to.
+ In simple terms this classification can be shown to be carried out by ANN
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Zurada1992"
@@ -796,8 +794,8 @@ key "Zurada1992"
 \end_inset
 
 .
- All ANNs in this paper consist of three layers: an input layer, a hidden
- layer and output layer.
+ All neural networks in this paper consist of three layers: an input layer,
+ a hidden layer and output layer.
  Each layer consists of a certain number of neurons.
  The connections between those neurons are called synapses.
  The input layer consists of junctions that represent the input.
@@ -813,25 +811,24 @@ n
  The hidden layer can consist of any number of neurons.
  The classification accuracy is greatly affected by the number of neurons
  in the hidden layer.
- The output layer consists of neurons each of which is activated by a function.
- The inputs to this function come from the hidden layer.
+ The output layer consists of neurons that are activated by a function the
+ input of which comes from the hidden layer.
  Classes or more specifically output classes are the patterns one wants
  to map the input to.
  The main idea behind ANN classification is that if the inputs belong to
  linearly separable regions of the n-dimensional space then using ANN, one
- can draw hyperplanes in that space so that the space between those hyperplanes
- contain only one region and each region is then mapped to one of the output
- classes using the activation function in the output neuron.
- The weights or more specifically synaptic weights of the synapses are adjusted
- during the training phase such that the vector space is divided into regions
+ can draw planes in that space so that the space between those plane contain
+ only one region and each region is then mapped to one of the output classes
+ using the activation function in the output neuron.
+ The weights or more specifically synaptic weights of the synapsis are adjusted
+ during the training phase such that the vector space is divided to regions
  each of which corresponds to certain class.
  Any output neuron receives the input vector through synaptic weights.
- The input is then applied to the function of the neuron that has the form
- g(x)=0 which is an equation of the hyperplanes in the n-dimensional space.
+ The input is then applied to the function of the neuron which has the form
+ g(x)=0 which is an equation of the plane in the n-dimensional space.
  The function g(x)=0 is realized in the ANN by the neurons and the synaptic
  weights.
- The output of the neuron is activated only if g(x) is positive for the
- associated input vector.
+ The neuron output is activated only if the output is positive.
  In this paper, the author uses the widely known and used backward propagation
  algorithm for the calculation of weights.
  Knowledge is stored in the network through those weights.
@@ -858,7 +855,7 @@ name "sec:Rationale-Behind-the"
 \end_layout
 
 \begin_layout Standard
-When a fault or any transient event occurs, it launches a traveling wave
+When a fault (or any transient event) occurs, it launches a traveling wave
  as well as high frequency oscillatory components.
  Traveling waves can be easily quantified as they arrive at the line terminals
  but the high frequency oscillatory components cannot.
@@ -869,8 +866,8 @@ When a fault or any transient event occurs, it launches a traveling wave
 
 \begin_layout Standard
 At this point, the author needs to introduce new terminology.
- Speaking of a certain transmission line, the author calls a fault on that
- line a fault case.
+ Speaking about a certain transmission line, the author calls a fault on
+ that line a fault case.
  A fault case has its parameters.
  Those parameters are: incipient angle, fault resistance, fault type and
  fault location.
@@ -951,17 +948,17 @@ reference "eq:2"
  Using infinite time series expansion would mystify the solution, because
  the author’s intention is to analyze the frequency content of the signal
  as this content changes over time.
- Application of Laplace and Fourier transforms to those equations produces
- integrals that yet to be solved formally.
+ Application of Laplace and Fourier transforms to those equations gives
+ out integrals that yet to be solved formally.
  Moreover, when a three phase line is studied, the above equations become
  six equations (two equations for each phase: a voltage and current equation).
- Those six equations are interdependent.
- Thus, decoupling them is hard undertaking if not impossible in most cases.
+ And those equations are interdependent which makes decoupling them hard
+ undertaking, if not impossible in most cases.
  If we have mutual coupling between two lines sharing the same tower, then
- we have three more equations making them a total of nine equations.
- Bearing in mind that those nine equations are for one line only, those
- equations then need to be solved simultaneously along with all other equations
- in the system.
+ we have 3 more equations making them a total of nine equations.
+ And this is only for one line.
+ Those equations then need to be solved simultaneously along with all other
+ equations in the system.
  For today power systems which consist of thousands of lines, solving all
  equations analytically in a closed form is behind human ingenuity.
  
@@ -971,8 +968,8 @@ reference "eq:2"
 The main aim is to detect the fault once it is initiated.
  It is very apparent that high frequency fault generated transients are
  different for each fault case on a specific line.
- This is because each fault case on a specific line has its set of equations
- as given in 
+ This is because each fault case corresponding to a specific line has its
+ set of equations as given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:1"
@@ -986,7 +983,7 @@ reference "eq:2"
 
 \end_inset
 
- with unique boundary (lines connected to it) and initial conditions.
+ above with its unique boundary (lines connected to it) and initial conditions.
  Moreover, the same fault case on different lines will cause different fault
  generated transients because each case has its own boundary and initial
  conditions, which is different for all neighboring lines.
@@ -1031,10 +1028,10 @@ key "Zurada1992"
 \begin_layout Standard
 For any fault occurring on a transmission line, the transient generated
  frequency components depend on the initial and the boundary conditions
- (the lines connected to the faulted line).
+ (the lines connected the faulted line).
  Since by definition all adjacent lines are different then the frequency
- generated transients for faults on each transmission line will be unique
- for each line.
+ generated transients for faults on transmission lines will be unique for
+ each line.
  The question is whether those frequency components can be combined in a
  certain way to form a pattern to be recognized.
  
@@ -1043,13 +1040,13 @@ For any fault occurring on a transmission line, the transient generated
 \begin_layout Standard
 The same argument not only applies to faults but also apply to switching
  events and lightning strikes on transmission lines.
- The transient event types that are studied in this paper are faults, lightning
- strikes, and line switching.
- Evidently, the frequency content of faults –on all lines- should be different
- from switching which in turn different from lightning because the equations
- governing the solutions are always different as different transient event
- types have different boundary and initial conditions.
- Those events types can be first recognized and then the event can be traced
+ The author calls faults, lighting strikes, and switching events the transient
+ event types.
+ Evidently, the frequency content of faults –on all lines- would be different
+ from switching which in turn different from lighting because the equations
+ governing the solutions are always different because of the different transient
+ event type and the different boundary and initial conditions.
+ Those events can then be first recognized and then the event can be traced
  back to the line originating it as given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1106,8 +1103,8 @@ reference "sec:Building-of-Feature"
 
 \end_inset
 
-- is derived from the oscillatory components and called the transient signature
- of the event.
+- is derived from the oscillatory components and called the the transient
+ signature of the event.
  The transients that are studied in this paper are lightning, line switching
  and faults.
  At a certain terminal of the line which is typically a relay location,
@@ -1411,8 +1408,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename System under study.svg
-	scale 40
+	filename Capture2.PNG
+	scale 50
 
 \end_inset
 
@@ -1554,7 +1551,7 @@ key "greenwood1991electrical"
  which are extremely important in high frequency transient studies.
  
 \begin_inset Float figure
-placement h
+placement p
 wide false
 sideways false
 status collapsed
@@ -1562,7 +1559,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Tower Configurations.svg
+	filename Towers.tiff
 	scale 35
 	clip
 
@@ -1769,7 +1766,7 @@ For lightning strike cases a batch of each line has been again created.
 
 .
  The rising and tailing times are kept constant during simulations but amplitude
-s have been varied which were set to 5 kA, 10 kA, 15 kA, 20 kA and 30 kA.
+s have been varied which were set to 5 kA, 10 kA, 15KA, 20 kA and 30 kA.
  Striking distances were the same as the ones used for fault batches: 5%,
  15%, 35%, 50%, 65%, 80% and 95% which are all percentages of total line
  length.
@@ -1846,7 +1843,7 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  only obtained.
  
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -2013,7 +2010,7 @@ reference "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
- classification output in case of all events were lightning strikes is shown.
+ classification output in case of all events were lighting strikes is shown.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2803,8 +2800,7 @@ reference "table4"
 
  most lightning strikes with amplitude 5000 Amp on line 23-22 have been
  misclassified for faults.
- A 5000 Amp lightning strike is unlikely in real world lightning strike
- cases.
+ A 5000 Amp lighting strike is unlikely in real world lightning strike cases.
  If we remove all 5000 Amp strikes from training, a one hundred accurate
  classification accuracy is achieved for event type classification.
 \end_layout
