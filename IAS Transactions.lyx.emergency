@@ -1851,7 +1851,47 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  Since the first one eighth of a cycle following the transient event is
  only sought, the details coefficients corresponding to that period are
  only obtained.
- Two modes out of the three modes are only used.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename reviewer's comments/Fig. 3.svg
+	width 9cm
+	height 20cm
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure shows the mode1 current of a certain fault case at different fault
+ resistances.
+ The same fault type, fault location and incipient angle is evaluated but
+ at different fault resistances
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fault_resistance"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Two modes out of the three modes are only used.
  The details coefficients of one level of Mode2 and Mode3 are stacked on
  top of each other.
  It should be emphasized that building the n-dimensional vector this way
@@ -2049,45 +2089,6 @@ reference "subsec:Transient-Event-Type"
  It should be apparent that the dimension of the feature space (n-dimensional
  space) depends on the DWT level used.
  It should be obvious as well that this dimension is halved as we go one
- 
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename sigAnalysis.svg
-	width 10cm
-	height 18cm
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Mode2 current of a certain fault case at different fault resistances.
- The same fault type, fault location and incipient angle is evaluated but
- at different fault resistances
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:fault_resistance"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
  level higher, i.e., the dimension of the n-dimensional space using level
  1 is double the dimension of level 2 n-dimensional.
  For the sampling frequency used in this paper, the dimension of the n-dimension
@@ -2149,7 +2150,30 @@ reference "fig2"
  It should be pointed out that the faults on one of the circuits of line
  25-27 are confused for faults on the other circuit and vice versa but not
  with other lines.
- 
+ The percentage accuracy does not change if the currents at terminal 25
+ are used instead.
+ Training with levels 1, 2, 3 and 4 gives the same classification accuracy
+ but the difference is mainly in the ANN size needed.
+ For reproducibility purposes, an ANN of size 40 in the hidden layer is
+ needed to achieve the results in table 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table1"
+
+\end_inset
+
+ for level 3.
+ Lower levels (levels corresponding to higher frequencies) needed less neurons
+ but the feature vector becomes so long (corresponding to more detailed
+ time resolution).
+ This in turn demands for a high super computer which has been undertaken
+ for level 1 (frequency band from 100 kHz to 50 kHz) and level 2 (50 kHz
+ to 25 kHz).
+ Level 3 (25 kHz to 12.5 kHz) and level 4 (12.5 kHz to 6.25 kHz) can be done
+ on a PC such as the one the author used with Core i7, 3.2 GHz speed, 4 cores
+ and 8 GB of RAM.
+ If the double circuit tower 25-27 is considered to be one line, a 100%
+ correct classification is achieved for faults.
 \begin_inset Float table
 wide false
 sideways false
@@ -2325,32 +2349,13 @@ Circuit (2) Line 25-27
 
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
-The percentage accuracy does not change if the currents at terminal 25 are
- used instead.
- Training with levels 1, 2, 3 and 4 gives the same classification accuracy
- but the difference is mainly in the ANN size needed.
- For reproducibility purposes, an ANN of size 40 in the hidden layer is
- needed to achieve the results in table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table1"
+\end_layout
 
 \end_inset
 
- for level 3.
- Lower levels (levels corresponding to higher frequencies) needed less neurons
- but the feature vector becomes so long (corresponding to more detailed
- time resolution).
- This in turn demands for a high super computer which has been undertaken
- for level 1 (frequency band from 100 kHz to 50 kHz) and level 2 (50 kHz
- to 25 kHz).
- Level 3 (25 kHz to 12.5 kHz) and level 4 (12.5 kHz to 6.25 kHz) can be done
- on a PC such as the one the author used with Core i7, 3.2 GHz speed, 4 cores
- and 8 GB of RAM.
- If the double circuit tower 25-27 is considered to be one line, a 100%
- correct classification is achieved for faults.
+
 \end_layout
 
 \begin_layout Subsection
@@ -2382,6 +2387,12 @@ reference "table2"
 \end_inset
 
  is achieved.
+ Training with any level from 1 to 4 gives the same classification result,
+ but the only difference is being the size of the hidden layer.
+ Level 3 required 30 neurons in the hidden layer with lower levels requiring
+ less neurons and higher levels requiring more neurons.
+ Once again switching events on one of the circuits of line 25-27 are confused
+ for the other circuit and vice versa .
 \begin_inset Float table
 wide false
 sideways false
@@ -2452,6 +2463,7 @@ Transmission Line
 \noun off
 \color none
 Accuracy (%)
+
 \end_layout
 
 \end_inset
@@ -2586,12 +2598,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 
- Training with any level from 1 to 4 gives the same classification result,
- but the only difference is being the size of the hidden layer.
- Level 3 required 30 neurons in the hidden layer with lower levels requiring
- less neurons and higher levels requiring more neurons.
- Once again switching events on one of the circuits of line 25-27 are confused
- for the other circuit and vice versa.
+
 \end_layout
 
 \begin_layout Subsection
@@ -2623,7 +2630,23 @@ reference "table3"
  irrespective of the terminal used or the level used ( levels 1 to 4).
  Level 3 required 30 neurons in the hidden layer with lower levels requiring
  less neurons and higher levels requiring more neurons.
- 
+ One has to note that in table 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table2"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table3"
+
+\end_inset
+
+, the algorithm cannot still distinguish between the events on any of the
+ circuits of line 25-27 due to the symmetry with respect to the line being
+ studied.
 \begin_inset Float table
 wide false
 sideways false
@@ -2694,6 +2717,7 @@ Transmission Line
 \noun off
 \color none
 Accuracy (%)
+
 \end_layout
 
 \end_inset
@@ -2828,23 +2852,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 
-One has to note that in table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table2"
 
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table3"
-
-\end_inset
-
-, the algorithm cannot still distinguish between the events on any of the
- circuits of line 25-27 due to the symmetry with respect to the line being
- studied.
 \end_layout
 
 \begin_layout Subsection
@@ -3116,31 +3124,31 @@ reference "subsec:Transient-Event-Type"
 \end_inset
 
  to see how noise can affect the classification accuracy.
- As can be seen from tables 
+ As can be seen from 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table8"
+reference "table1-1"
 
 \end_inset
 
 ,
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table9"
+reference "table2-1"
 
 \end_inset
 
 ,
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table10"
+reference "table3-1"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table11"
+reference "table4-1"
 
 \end_inset
 
@@ -3187,7 +3195,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
+Testing ANN in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "table1"
@@ -3197,7 +3205,7 @@ reference "table1"
  with Noisy and Denoised Data in case of Faults 
 \begin_inset CommandInset label
 LatexCommand label
-name "table8"
+name "table1-1"
 
 \end_inset
 
@@ -3208,14 +3216,14 @@ name "table8"
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="20" columns="4">
+<lyxtabular version="3" rows="19" columns="4">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3224,7 +3232,7 @@ SNR
 
 \end_inset
 </cell>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3233,49 +3241,11 @@ Transmission Line
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Classification Accuracy
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Noisy Data (%)
+Accuracy with Noisy Data (%)
 \end_layout
 
 \end_inset
@@ -3284,7 +3254,7 @@ Noisy Data (%)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Denoised Data (%)
+Accuracy with Denoised Data (%)
 \end_layout
 
 \end_inset
@@ -3987,24 +3957,17 @@ Circuit (2) Line 25-27
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table2"
-
-\end_inset
-
- with Noisy and Denoised Data in case of Switching
+Line Identification Accuracy in case of Switching with Noisy Data
 \begin_inset CommandInset label
 LatexCommand label
-name "table9"
+name "table2-1"
 
 \end_inset
 
@@ -4015,14 +3978,14 @@ name "table9"
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="20" columns="4">
+<lyxtabular version="3" rows="19" columns="4">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4031,7 +3994,7 @@ SNR
 
 \end_inset
 </cell>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4040,40 +4003,11 @@ Transmission Line
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Classification Accuracy
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+Accuracy (%)
 \end_layout
 
 \end_inset
@@ -4082,16 +4016,7 @@ Classification Accuracy
 \begin_inset Text
 
 \begin_layout Plain Layout
-Noisy Data (%)
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Denoised Data (%)
 \end_layout
 
 \end_inset
@@ -4116,7 +4041,7 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4125,11 +4050,11 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-99
+
 \end_layout
 
 \end_inset
@@ -4154,7 +4079,7 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4163,11 +4088,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+
 \end_layout
 
 \end_inset
@@ -4192,7 +4117,7 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4201,11 +4126,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+
 \end_layout
 
 \end_inset
@@ -4230,7 +4155,7 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4239,11 +4164,11 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98.5
+
 \end_layout
 
 \end_inset
@@ -4268,7 +4193,7 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4277,11 +4202,11 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-49.2
+
 \end_layout
 
 \end_inset
@@ -4306,7 +4231,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4315,11 +4240,11 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-49.5
+
 \end_layout
 
 \end_inset
@@ -4344,7 +4269,7 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4353,11 +4278,11 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+
 \end_layout
 
 \end_inset
@@ -4382,7 +4307,7 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4391,11 +4316,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97.5
+
 \end_layout
 
 \end_inset
@@ -4420,7 +4345,7 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4429,11 +4354,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97.2
+
 \end_layout
 
 \end_inset
@@ -4458,7 +4383,7 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4467,11 +4392,11 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+
 \end_layout
 
 \end_inset
@@ -4496,7 +4421,7 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4505,11 +4430,11 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-48.7
+
 \end_layout
 
 \end_inset
@@ -4534,7 +4459,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4543,11 +4468,11 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-49
+
 \end_layout
 
 \end_inset
@@ -4572,7 +4497,7 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4581,11 +4506,11 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.5
+
 \end_layout
 
 \end_inset
@@ -4610,7 +4535,7 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4619,11 +4544,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-95.2
+
 \end_layout
 
 \end_inset
@@ -4648,7 +4573,7 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4657,11 +4582,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-95.6
+
 \end_layout
 
 \end_inset
@@ -4686,7 +4611,7 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4695,11 +4620,11 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96
+
 \end_layout
 
 \end_inset
@@ -4724,7 +4649,7 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4733,11 +4658,11 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-47.6
+
 \end_layout
 
 \end_inset
@@ -4762,7 +4687,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4771,11 +4696,11 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-48.5
+
 \end_layout
 
 \end_inset
@@ -4801,17 +4726,10 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table3"
-
-\end_inset
-
- with Noisy and Denoised Data in case of Lightning
+Line Identification Accuracy in case of Lightning with Noisy Data
 \begin_inset CommandInset label
 LatexCommand label
-name "table10"
+name "table3-1"
 
 \end_inset
 
@@ -4822,14 +4740,13 @@ name "table10"
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="20" columns="4">
+<lyxtabular version="3" rows="19" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4838,7 +4755,7 @@ SNR
 
 \end_inset
 </cell>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4847,58 +4764,11 @@ Transmission Line
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Classification Accuracy
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Noisy Data (%)
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Denoised Data (%)
+Accuracy (%)
 \end_layout
 
 \end_inset
@@ -4919,15 +4789,6 @@ Denoised Data (%)
 
 \begin_layout Plain Layout
 Line Under Study
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-100
 \end_layout
 
 \end_inset
@@ -4961,20 +4822,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-99
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-99.3
+99
 \end_layout
 
 \end_inset
@@ -4999,20 +4851,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-99.1
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-99.5
+99.1
 \end_layout
 
 \end_inset
@@ -5033,15 +4876,6 @@ Line 23-24
 
 \begin_layout Plain Layout
 Line 23-22
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-99.7
 \end_layout
 
 \end_inset
@@ -5075,15 +4909,6 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-49.3
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -5109,15 +4934,6 @@ Circuit (1) Line 25-27
 
 \begin_layout Plain Layout
 Circuit (2) Line 25-27
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-49.5
 \end_layout
 
 \end_inset
@@ -5151,20 +4967,11 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-98
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-99
+98
 \end_layout
 
 \end_inset
@@ -5189,20 +4996,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-97
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97.8
+97
 \end_layout
 
 \end_inset
@@ -5227,20 +5025,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-97.2
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+97.2
 \end_layout
 
 \end_inset
@@ -5265,20 +5054,11 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-97.9
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98.5
+97.9
 \end_layout
 
 \end_inset
@@ -5303,20 +5083,11 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-46
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-47.3
+46
 \end_layout
 
 \end_inset
@@ -5341,20 +5112,11 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-47
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-48.5
+47
 \end_layout
 
 \end_inset
@@ -5379,20 +5141,11 @@ Line Under Study
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-95
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98
+95
 \end_layout
 
 \end_inset
@@ -5417,20 +5170,11 @@ Line 23-32
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-94
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.7
+94
 \end_layout
 
 \end_inset
@@ -5455,20 +5199,11 @@ Line 23-24
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-94.6
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.2
+94.6
 \end_layout
 
 \end_inset
@@ -5493,20 +5228,11 @@ Line 23-22
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-94.8
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97.6
+94.8
 \end_layout
 
 \end_inset
@@ -5531,20 +5257,11 @@ Circuit (1) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-42
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-46.6
+42
 \end_layout
 
 \end_inset
@@ -5569,20 +5286,11 @@ Circuit (2) Line 25-27
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-41.5
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-48.1
+41.5
 \end_layout
 
 \end_inset
@@ -5608,17 +5316,10 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table4"
-
-\end_inset
-
- with Noisy and Denoised Data 
+Transient Event Type Classification Accuracy with Noisy Data 
 \begin_inset CommandInset label
 LatexCommand label
-name "table11"
+name "table4-1"
 
 \end_inset
 
@@ -5633,14 +5334,13 @@ name "table11"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="4">
+<lyxtabular version="3" rows="10" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5649,7 +5349,7 @@ SNR
 
 \end_inset
 </cell>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5658,58 +5358,11 @@ Event Type
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Classification Accuracy
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Noisy Data (%)
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Denoised Data (%)
+Accuracy (%)
 \end_layout
 
 \end_inset
@@ -5734,20 +5387,11 @@ Faults
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-99
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-99.2
+99
 \end_layout
 
 \end_inset
@@ -5772,20 +5416,11 @@ Lightning
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-96
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.8
+96
 \end_layout
 
 \end_inset
@@ -5810,20 +5445,11 @@ Switching
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-98.1
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98.5
+98.1
 \end_layout
 
 \end_inset
@@ -5848,20 +5474,11 @@ Faults
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-97
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-98.1
+97
 \end_layout
 
 \end_inset
@@ -5886,20 +5503,11 @@ Lightning
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-95.2
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-95.7
+95.2
 \end_layout
 
 \end_inset
@@ -5924,20 +5532,11 @@ Switching
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-96.5
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97
+96.5
 \end_layout
 
 \end_inset
@@ -5962,20 +5561,11 @@ Faults
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-95
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-97.5
+95
 \end_layout
 
 \end_inset
@@ -6000,20 +5590,11 @@ Lightning
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-94.4
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-95
+94.4
 \end_layout
 
 \end_inset
@@ -6038,20 +5619,11 @@ Switching
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-94.1
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.5
+94.1
 \end_layout
 
 \end_inset
@@ -6070,8 +5642,54 @@ Switching
 \end_layout
 
 \begin_layout Standard
-To remove noise from data, the author has used wavelet denoising approach.
- The wavelets toolbox in MATLAB has been used to perform wavelet denoising.
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Noisy-Singal-"
+
+\end_inset
+
+ shows the waveform of mode2 current of a certain fault case with noise
+ (SNR=40) and without noise.
+ To remove noise from data, the author has used wavelet denoising approach.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Matlab Files and raster images/noise vs denoised signal .svg
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An Example of a signal with and without noise 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Noisy-Singal-"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+The wavelets toolbox in MATLAB has been used to perform wavelet denoising.
  The denoised data are used for testing the ANNs trained in section 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -6101,85 +5719,40 @@ reference "subsec:Transient-Event-Type"
 \end_inset
 
 .
- The waveform of mode2 current of a certain fault case with noise (SNR=40)
- and after denoising is shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Noisy-Singal"
-
-\end_inset
-
-.
  The results of this testing is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table8"
+reference "table1-1"
 
 \end_inset
 
 ,
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table9"
+reference "table2-1"
 
 \end_inset
 
 ,
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table10"
+reference "table3-1"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table11"
+reference "table4-1"
 
 \end_inset
 
 .
  As can be seen from the tables, denoising improves the performance of ANN.
- This is more noticeable when classification is done using data that has
- lower SNR.
+ This is more noticeable with classification with lower SNR.
  A detailed error analysis is beyond the scope of this paper and will be
  undertook along with field validation.
  
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Matlab Files and raster images/noise vs denoised signal .svg
-	scale 15
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-An Example of a signal with and without noise 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Noisy-Singal"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
