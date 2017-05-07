@@ -121,7 +121,7 @@ IEEE
 
  
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Paper previously presented at the 2016 Power and Energy Conference (PECI),
@@ -133,7 +133,7 @@ Paper previously presented at the 2016 Power and Energy Conference (PECI),
 
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Ahmad Abdullah is with Electric Power Engineers Inc., Austin, TX, 78738,
@@ -160,7 +160,8 @@ gs not only as a principle but also as an application as well.
  shortcomings.
  Such a principle is offered in this paper and is currently being validated
  using field data.
- The principle is a new application of wavelet based neural networks.
+ The principle is a new application of wavelet based artificial neural networks
+ (ANNs).
  The application uses high frequency content of a subset of local currents
  of one end of a protected line to classify transients on the line protected
  and its adjacent lines.
@@ -175,8 +176,7 @@ gs not only as a principle but also as an application as well.
  Discrete Wavelet Transform (DWT) is used to extract high frequency components
  of the two aerial modal currents.
  A feature vector is built using the wavelets details coefficients of one
- level of the aerial modes and used to train an artificial neural network
- (ANN).
+ level of the aerial modes and used to train an artificial neural network.
  Results show that the classes corresponding to each transient event type
  on the protected line and its adjacent lines are almost linearly separable
  from each other.
@@ -498,13 +498,6 @@ key "Zwe-Lee2004"
 
 \end_inset
 
- and 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "perera2011recognition"
-
-\end_inset
-
  do not take transients on adjacent lines into account which could mislead
  these schemes.
  Additionally, symmetrical line configuration has been universally assumed
@@ -607,7 +600,8 @@ reference "sec:Error-Analysis"
 
 \end_inset
 
-.Comparison between the method proposed in this paper and existing methods
+.
+ Comparison between the method proposed in this paper and existing methods
  in literature is offered in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -673,7 +667,7 @@ key "Boggess2009"
  frequency band of approximation 1 while approximation 2 will occupy the
  lower frequency band.
  Continuing this manner, by applying successive low and high pass filters,
- one obtains a set of levels - also called details - and one last approximation.
+ one obtains a set of levels -also called details- and one last approximation.
  In theory the last approximation should correspond to a pure sine wave
  assuming that the high frequency components imposed on the power frequency
  have frequencies that are not included in the frequency band of the last
@@ -831,17 +825,27 @@ n
  classes using the activation function in the output neuron.
  The weights or more specifically synaptic weights of the synapses are adjusted
  during the training phase such that the vector space is divided into regions
- each of which corresponds to certain class.
+ each of which corresponds to a certain class.
  Any output neuron receives the input vector through synaptic weights.
- The input is then applied to the function of the neuron that has the form
- g(x)=0 which is an equation of the hyperplanes in the n-dimensional space.
- The function g(x)=0 is realized in the ANN by the neurons and the synaptic
- weights.
- The output of the neuron is activated only if g(x) is positive for the
- associated input vector.
- In this paper, the author uses the widely known and used backward propagation
- algorithm for the calculation of weights.
- Knowledge is stored in the network through those weights.
+ The resultant is then applied to the function of the neuron that has the
+ form 
+\begin_inset Formula $g(x)=0$
+\end_inset
+
+ which is an equation of the hyperplanes in the n-dimensional space.
+ The function 
+\begin_inset Formula $g(x)=0$
+\end_inset
+
+ is realized in the ANN by the neurons and the synaptic weights.
+ The output of the neuron is activated only if 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ is positive for the corresponding input vector.
+ In this paper, the author uses the widely known backward propagation algorithm
+ for the calculation of weights.
+ Knowledge is stored in the ANN through those weights.
  Supervised learning only is done in this paper.
  The algorithm of the steepest gradient is used throughout the paper 
 \begin_inset CommandInset citation
@@ -920,19 +924,43 @@ Where:
 \end_layout
 
 \begin_layout Itemize
-I, V are the current and the voltage anywhere on the line
+\begin_inset Formula $I$
+\end_inset
+
+ and 
+\begin_inset Formula $V$
+\end_inset
+
+ are the current and the voltage anywhere on the line
 \end_layout
 
 \begin_layout Itemize
-R, G is the resistance and conductance per unit length of the line
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $G$
+\end_inset
+
+ is the resistance and conductance per unit length of the line
 \end_layout
 
 \begin_layout Itemize
-L and C are inductance and capacitance of the line per unit length
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $C$
+\end_inset
+
+ are inductance and capacitance of the line per unit length
 \end_layout
 
 \begin_layout Itemize
-x is the distance from a zero reference frame generally taken to be at either
+\begin_inset Formula $x$
+\end_inset
+
+ is the distance from a zero reference frame generally taken to be at either
  end of the line.
 \end_layout
 
@@ -962,7 +990,6 @@ reference "eq:2"
  integrals that yet to be solved formally.
  Moreover, when a three phase line is studied, the above equations become
  six equations (two equations for each phase: a voltage and current equation).
- Those six equations are interdependent.
  Thus, decoupling them is hard undertaking if not impossible in most cases.
  If we have mutual coupling between two lines sharing the same tower, then
  we have three more equations making them a total of nine equations.
@@ -1006,9 +1033,9 @@ reference "eq:2"
 \begin_layout Standard
 Since the author argues that those frequencies -which change over time-
  are different for each line, the author only needs to see the aggregate
- of all those frequency components for each line, and if intuition is true
- then the aggregate of those fault generated high frequencies will be different
- for each line.
+ of all those frequency components for each line.
+ If intuition is true then the aggregate of those fault generated high frequenci
+es will be different for each line.
  What remains is to investigate how the feature space can be defined such
  that this difference can be attained and this is done in 
 \begin_inset CommandInset ref
@@ -1091,7 +1118,7 @@ In this paper it is argued and shown that the oscillatory information present
  on adjacent lines.
  Any change of configuration on the line causes a traveling wave to be generated
  traveling from the point of change towards the ends of the line.
- In the simplest case this wave will be just a pulse- a step- but in reality
+ In the simplest case this wave will be just a pulse -a step- but in reality
  will be accompanied by high frequency oscillating components.
  Fourier analysis is not suitable for analyzing such waveforms because those
  oscillations will be distorted and attenuated as they arrive at the line
@@ -1123,7 +1150,7 @@ reference "sec:Building-of-Feature"
  This means that using this oscillatory information of the event, the line
  causing it can be determined.
  Those signatures are a function of the line parameters, the network topology
- and the instance of the event and of course the type of the event.
+ and the instance of the event and, of course, the type of the event.
  In essence, the signature of the fault occurring on a certain line will
  be different form the signature of the fault on adjacent lines.
  Also, line switching will cause the currents to oscillate in a manner that
@@ -1153,15 +1180,15 @@ key "Zurada1992"
  Static feedforward ANN is a tool used to map a vector from the n-dimensional
  space to another m-dimensional space.
  In the case in hand, the feature vector is mapped which is n-dimensional
- space to another space.
- These spaces will be described in 
+ space to another output space.
+ These output spaces will be described in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Results"
 
 \end_inset
 
- but for now if this mapping is successful then the original n-dimensional
+, but for now if this mapping is successful then the original n-dimensional
  subspaces are linearly separable as explained in 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1368,7 +1395,7 @@ name "subsec:EMTP-Model"
 \end_layout
 
 \begin_layout Standard
-A snapshot of the area under study taken from ATPDraw is shown in 
+The area under study is shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:fig.1"
@@ -1472,14 +1499,14 @@ key "Perera2008"
 
 \end_inset
 
- and since one eighth only of post-fault data is used, the results of 
+ and since one eighth only of post-event data is used, the results of 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Perera2008"
 
 \end_inset
 
- apply very well, i.e, no need to model CT saturation effects.
+ apply very well in our case, i.e, no need to model CT saturation effects.
  Synchronous machines are modeled using ATP SM-59 except for excitation
  and governor controls.
  This is because only one eighth of a cycle of post event data is used which
@@ -1507,11 +1534,17 @@ key "ALSTOM2002"
 \end_inset
 
 .
- All towers are scanned in inserted in the paper for convenience of reader
- in 
+ All towers are reproduced from 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ALSTOM2002"
+
+\end_inset
+
+ in the paper for convenience of reader in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig2"
+reference "fig:fig2"
 
 \end_inset
 
@@ -1560,47 +1593,6 @@ key "greenwood1991electrical"
 
  which are extremely important in high frequency transient studies.
  
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Tower Configurations.svg
-	scale 35
-	clip
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Tower Configurations of lines of the area under study 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig2"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -1623,6 +1615,43 @@ The argument in the paper is that high frequency components of the currents
  A very general network topology with different tower configurations is
  present.
  
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Tower Configurations.svg
+	scale 35
+	clip
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tower Configurations of lines of the area under study 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fig2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1774,7 +1803,7 @@ For lightning strike cases a batch of each line has been again created.
 \begin_inset Formula $\mu s$
 \end_inset
 
-.
+ has been used.
  The rising and tailing times are kept constant during simulations but amplitude
 s have been varied which were set to 5 kA, 10 kA, 15 kA, 20 kA and 30 kA.
  Striking distances were the same as the ones used for fault batches: 5%,
@@ -1804,7 +1833,14 @@ After batches have been created, a special subroutine is used to translate
  Different modal frequencies for the modal matrix have been tried but this
  did not affect the classification results at all.
  The two aerial modes are the only ones used for training.
- The modal matrix with real entries is given in equation (1).
+ The modal matrix with real entries is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:eq4"
+
+\end_inset
+
+.
  The signs of the entries are only shown to emphasize their physical meaning
 \begin_inset Formula 
 \begin{equation}
@@ -1817,7 +1853,7 @@ Mode3
 \end{pmatrix}\times\begin{pmatrix}Ia\\
 Ib\\
 Ic
-\end{pmatrix}
+\end{pmatrix}\label{eq:eq4}
 \end{equation}
 
 \end_inset
@@ -1829,7 +1865,8 @@ Ic
 It should be apparent that Mode1 is the weighted sum of all phase currents
  which is nothing other than the ground mode current.
  This ground mode current is known to be very well dependent on the frequency
- and ground resistance 
+ and ground resistance on the contrary to the aerial modes that are more
+ or less frequency interdependent 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Ametani2013"
@@ -1859,7 +1896,7 @@ Once the modal quantities are available, we run DWT with db4 for 4 levels,
  all other n-dimensional vectors are built consistently this way, i.e., the
  order of the modes in the feature vector has to be preserved and the vector
  has to be built using one level only.
- If the order of modes in the feature vector is changed this amounts to
+ If the order of modes in the feature vector is changed, this amounts to
  a rotation of n-dimensional space but should not change the results of
  classification, again as long as all vectors are built consistently.
  
@@ -1881,10 +1918,9 @@ key "Martin2003"
 
 \begin_layout Standard
 Having created n-dimensional vectors, the input for the ANN is ready.
- Training of the neural network is then started.
+ Training of the ANN is then started.
  The cases are randomly divided into the following categories: 70% of all
  cases for training, 15% for validation and another 15% for testing.
- Results are discussed in the following section.
 \end_layout
 
 \begin_layout Section
@@ -1921,9 +1957,20 @@ reference "subsec:Creation-Of-Transient"
  it is not computationally feasible to include all values of fault resistance
  into consideration in the training stage.
  However, it is evident that the oscillations present in the transient signal
- corresponding to a fault case with a faults resistance of 20 Ω should have
- oscillations that fall in between the same fault case but with a fault
- resistance of 0 Ω and 100 Ω.
+ corresponding to a fault case with a fault resistance of 20
+\begin_inset Formula $\Omega$
+\end_inset
+
+ should have oscillations that fall in between the same fault case but with
+ a fault resistance of 0
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and 100
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
  This notion of “in-betweenness” is illustrated in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1975,19 +2022,19 @@ reference "subsec:LINE-IDENTIFICATION-IN-faults"
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:Line-Identification-in-lightning"
-
-\end_inset
-
- classification output in case of all events were lightning strikes is shown.
- In 
-\begin_inset CommandInset ref
-LatexCommand formatted
 reference "subsec:Line-Identification-in-switching"
 
 \end_inset
 
  results in case events were all line switching are presented.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Line-Identification-in-lightning"
+
+\end_inset
+
+ classification output in case of all events were lightning strikes is shown.
  Finally, event type classification is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2010,8 +2057,8 @@ reference "sec:Solution-methodology"
 , the mapping from n-dimensional space to the m-dimensional space has not
  been discussed.
  The dimension of the n-dimensional space is fixed by the length of the
- feature vector while the dimension of the m-dimensional space is different
- depending on which space we want to map the n-dimensional space to.
+ feature vector while the dimension of the m-dimensional space varies according
+ to which space we want to map the n-dimensional space to.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2054,7 +2101,7 @@ reference "subsec:Transient-Event-Type"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2107,10 +2154,8 @@ name "subsec:LINE-IDENTIFICATION-IN-faults"
 \end_layout
 
 \begin_layout Standard
-This section provides the results for classification in case of faults only,
- i.e.
- if all transient events are faults only how accurate can the method identify
- the faulted line.
+This section provides the results for classification in case all transients
+ were of faults.
  
 \end_layout
 
@@ -2138,7 +2183,7 @@ reference "table1"
  This is to be expected if the reader consults 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig2"
+reference "fig:fig2"
 
 \end_inset
 
@@ -2149,7 +2194,30 @@ reference "fig2"
  It should be pointed out that the faults on one of the circuits of line
  25-27 are confused for faults on the other circuit and vice versa but not
  with other lines.
- 
+ The percentage accuracy does not change if the currents at terminal 25
+ are used instead.
+ Training with levels 1, 2, 3 and 4 gives the same classification accuracy
+ but the difference is mainly in the ANN size needed.
+ For reproducibility purposes, an ANN of size 40 in the hidden layer is
+ needed to achieve the results in table 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table1"
+
+\end_inset
+
+ for level 3.
+ Lower levels (levels corresponding to higher frequencies) needed less neurons
+ but the feature vector becomes so long (corresponding to more detailed
+ time resolution).
+ This in turn demands for a high super computer which has been undertaken
+ for level 1 (frequency band from 100 kHz to 50 kHz) and level 2 (50 kHz
+ to 25 kHz).
+ Level 3 (25 kHz to 12.5 kHz) and level 4 (12.5 kHz to 6.25 kHz) can be done
+ on a PC such as the one the author used with Core i7, 3.2 GHz speed, 4 cores
+ and 8 GB of RAM.
+ If the double circuit tower 25-27 is considered to be one line, a 100%
+ correct classification is achieved for faults.
 \begin_inset Float table
 wide false
 sideways false
@@ -2327,30 +2395,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 
-The percentage accuracy does not change if the currents at terminal 25 are
- used instead.
- Training with levels 1, 2, 3 and 4 gives the same classification accuracy
- but the difference is mainly in the ANN size needed.
- For reproducibility purposes, an ANN of size 40 in the hidden layer is
- needed to achieve the results in table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table1"
 
-\end_inset
-
- for level 3.
- Lower levels (levels corresponding to higher frequencies) needed less neurons
- but the feature vector becomes so long (corresponding to more detailed
- time resolution).
- This in turn demands for a high super computer which has been undertaken
- for level 1 (frequency band from 100 kHz to 50 kHz) and level 2 (50 kHz
- to 25 kHz).
- Level 3 (25 kHz to 12.5 kHz) and level 4 (12.5 kHz to 6.25 kHz) can be done
- on a PC such as the one the author used with Core i7, 3.2 GHz speed, 4 cores
- and 8 GB of RAM.
- If the double circuit tower 25-27 is considered to be one line, a 100%
- correct classification is achieved for faults.
 \end_layout
 
 \begin_layout Subsection
@@ -2382,6 +2427,60 @@ reference "table2"
 \end_inset
 
  is achieved.
+ Training with any level from 1 to 4 gives the same classification result,
+ but the only difference is being the size of the hidden layer.
+ Level 3 required 30 neurons in the hidden layer with lower levels requiring
+ less neurons and higher levels requiring more neurons.
+ Once again switching events on one of the circuits of line 25-27 are confused
+ for the other circuit and vice versa.
+\end_layout
+
+\begin_layout Subsection
+Line Identification in Case of Lightning Strikes
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Line-Identification-in-lightning"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If all transient events are lightning only as described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Creation-of-Lightning-cases"
+
+\end_inset
+
+, then using any end data gives the results in table 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table3"
+
+\end_inset
+
+ irrespective of the terminal used or the level used ( levels 1 to 4).
+ Level 3 required 30 neurons in the hidden layer with lower levels requiring
+ less neurons and higher levels requiring more neurons.
+ One has to note that in table 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table2"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "table3"
+
+\end_inset
+
+, the algorithm cannot still distinguish between the events on any of the
+ circuits of line 25-27 due to the symmetry with respect to the line being
+ studied.
 \begin_inset Float table
 wide false
 sideways false
@@ -2586,43 +2685,6 @@ Circuit (2) Line 25-27
 
 \end_inset
 
- Training with any level from 1 to 4 gives the same classification result,
- but the only difference is being the size of the hidden layer.
- Level 3 required 30 neurons in the hidden layer with lower levels requiring
- less neurons and higher levels requiring more neurons.
- Once again switching events on one of the circuits of line 25-27 are confused
- for the other circuit and vice versa.
-\end_layout
-
-\begin_layout Subsection
-Line Identification in Case of Lightning Strikes
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Line-Identification-in-lightning"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-If all transient events are lightning only as described in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Creation-of-Lightning-cases"
-
-\end_inset
-
-, then using any end data gives the results in table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table3"
-
-\end_inset
-
- irrespective of the terminal used or the level used ( levels 1 to 4).
- Level 3 required 30 neurons in the hidden layer with lower levels requiring
- less neurons and higher levels requiring more neurons.
  
 \begin_inset Float table
 wide false
@@ -2828,23 +2890,7 @@ Circuit (2) Line 25-27
 
 \end_inset
 
-One has to note that in table 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table2"
 
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "table3"
-
-\end_inset
-
-, the algorithm cannot still distinguish between the events on any of the
- circuits of line 25-27 due to the symmetry with respect to the line being
- studied.
 \end_layout
 
 \begin_layout Subsection
@@ -2913,8 +2959,8 @@ reference "table4"
  misclassified for faults.
  A 5000 Amp lightning strike is unlikely in real world lightning strike
  cases.
- If we remove all 5000 Amp strikes from training, a one hundred accurate
- classification accuracy is achieved for event type classification.
+ If we remove all 5000 Amp strikes from training, a one hundred percent
+ accurate classification is achieved for event type classification.
 \end_layout
 
 \begin_layout Standard
@@ -2922,7 +2968,7 @@ It is now a straightforward manner to construct a two layer feedforward
  network that classify any event to fault, lightning or switching in the
  first layer then identify the line causing the event in the second layer.
  Alternatively, a relay can be programmed to classify the events into fault,
- switching or lightning in table 
+ switching or lightning per table 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "table4"
@@ -6162,7 +6208,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An Example of a signal with and without noise 
+Mode2 of a fault case with noise and after denoising 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Noisy-Singal"
@@ -6256,7 +6302,7 @@ key "Silva2006"
 ion while training the ANN.
  A drawback of this method is the need to perform many offline studies to
  determine the threshold for the trip restraint.
- Moreover, the method suffers from limited bandwidth of the CVTs.
+ Moreover, the method suffers from the limited bandwidth of the CVTs.
  
 \end_layout
 
@@ -6274,8 +6320,8 @@ key "perera2011recognition"
  aforementioned shortcomings of CVTs.
  However, the simulated system is small and the methods proposed cannot
  identify the line causing the transient event.
- Additionally, the use of energy as a trip restraint requires a detailed
- study on the proximity of the transient to the measuring CT.
+ Additionally, the use of energy as a feature requires a detailed study
+ on the proximity of the transient to the measuring CT.
  The results in 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -6496,7 +6542,7 @@ In all methods mentioned above, at least one quarter of a cycle is needed
  of that to reach a secure decision about whether the transient belongs
  to the line being protected and whether the transient is a fault.
  Additionally, actual physical tower configurations have not been taken
- into consideration.
+ into consideration in literature.
  
 \end_layout
 
@@ -6577,6 +6623,8 @@ This paper could not have seen the light without the resources at Texas
  The author would like to thank all at the facility for their help and support.
  The author also would like to express his sincere thanks for Jonathan Woodworth
  of ArresterWorks for his guidance regarding arrester selection.
+ Lastly, the author would like to thank Gurunath Gurrala from the Indian
+ Institute of Science for his constructive review of the manuscript.
  
 \end_layout
 
