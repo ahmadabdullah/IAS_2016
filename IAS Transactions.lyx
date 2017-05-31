@@ -885,7 +885,7 @@ At this point, the author needs to introduce new terminology.
  A fault case has its parameters.
  Those parameters are: incipient angle, fault resistance, fault type and
  fault location.
- Thus a certain fault case on a specific transmission line causes voltages
+ Thus, a certain fault case on a specific transmission line causes voltages
  and currents to oscillate in a manner in accordance with the parameters
  of that fault case.
  The formal solution of the currents and voltages of a single phase line
@@ -1003,8 +1003,8 @@ reference "eq:2"
 
 \begin_layout Standard
 The main aim is to detect the fault once it is initiated.
- It is very apparent that high frequency fault generated transients are
- different for each fault case on a specific line.
+ It is very apparent that the high frequency fault generated transients
+ are different for each fault case on a specific line.
  This is because each fault case on a specific line has its set of equations
  as given in 
 \begin_inset CommandInset ref
@@ -1067,7 +1067,7 @@ For any fault occurring on a transmission line, the transient generated
  frequency components depend on the initial and the boundary conditions
  (the lines connected to the faulted line).
  Since by definition all adjacent lines are different then the frequency
- generated transients for faults on each transmission line will be unique
+ generated transients for faults on each transmission line should be unique
  for each line.
  The question is whether those frequency components can be combined in a
  certain way to form a pattern to be recognized.
@@ -1699,18 +1699,66 @@ name "subsec:Creation-of-Fault"
 Fault cases are created in batches; a batch for each line.
  Each batch has fault parameters, these parameters are the following: incipient
  angle, fault resistance, fault location and fault type.
- All types of faults have been created i.e., AG, BG, CG, AB, BC, CA, ABG,
+ All types of faults have been created, i.e., AG, BG, CG, AB, BC, CA, ABG,
  CBG, ACG, ABC, ABCG.
  Incipient angles are from 0 to 350 degrees in 10 degrees increments.
- Fault resistance assumes the values: 0, 20
+ Fault resistance assumes the values: 0, 20 
 \begin_inset Formula $\Omega$
 \end_inset
 
-, 100
+, 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+100
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
 \begin_inset Formula $\Omega$
 \end_inset
 
- and 1000
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+1000
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
 \begin_inset Formula $\Omega$
 \end_inset
 
@@ -1866,7 +1914,7 @@ It should be apparent that Mode1 is the weighted sum of all phase currents
  which is nothing other than the ground mode current.
  This ground mode current is known to be very well dependent on the frequency
  and ground resistance on the contrary to the aerial modes that are more
- or less frequency interdependent 
+ or less frequency independent 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Ametani2013"
@@ -1874,8 +1922,8 @@ key "Ametani2013"
 \end_inset
 
 .
- This is the main reason that this current mode has not been used for building
- the feature vector for training.
+ This is the main reason that the ground current mode has not been used
+ for building the feature vector for training.
  
 \end_layout
 
@@ -1936,7 +1984,7 @@ name "sec:Signal-Analsysis"
 
 \begin_layout Standard
 Even though ANN training is done offline, yet the principle proposed in
- this paper is for online applications.
+ this paper can be used for online applications.
  It should be noted that training has been done using hundreds of thousands
  of cases.
  For example, 8066 fault cases per line and a total of 54336 transient cases
@@ -1957,16 +2005,16 @@ reference "subsec:Creation-Of-Transient"
  it is not computationally feasible to include all values of fault resistance
  into consideration in the training stage.
  However, it is evident that the oscillations present in the transient signal
- corresponding to a fault case with a fault resistance of 20
+ corresponding to a fault case with a fault resistance of 20 
 \begin_inset Formula $\Omega$
 \end_inset
 
  should have oscillations that fall in between the same fault case but with
- a fault resistance of 0
+ a fault resistance of 0 
 \begin_inset Formula $\Omega$
 \end_inset
 
- and 100
+ and 100 
 \begin_inset Formula $\Omega$
 \end_inset
 
@@ -1978,10 +2026,10 @@ reference "fig:fault_resistance"
 
 \end_inset
 
- .
+.
  As explained in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:Solution-methodology"
 
 \end_inset
@@ -2162,7 +2210,7 @@ This section provides the results for classification in case all transients
 \begin_layout Standard
 First, six batches of faults are created as described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Creation-of-Fault"
 
 \end_inset
@@ -2170,10 +2218,10 @@ reference "subsec:Creation-of-Fault"
 .
  Creating the feature vector using currents from terminal 23 as described
  before using any levels from 1 to 4 to train ANN gives the classification
- accuracy in table 
+ accuracy in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table1"
+reference "tab:table1"
 
 \end_inset
 
@@ -2199,10 +2247,10 @@ reference "fig:fig2"
  Training with levels 1, 2, 3 and 4 gives the same classification accuracy
  but the difference is mainly in the ANN size needed.
  For reproducibility purposes, an ANN of size 40 in the hidden layer is
- needed to achieve the results in table 
+ needed to achieve the results in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table1"
+reference "tab:table1"
 
 \end_inset
 
@@ -2231,7 +2279,7 @@ status collapsed
 Faults Classification Accuracy 
 \begin_inset CommandInset label
 LatexCommand label
-name "table1"
+name "tab:table1"
 
 \end_inset
 
@@ -2414,15 +2462,15 @@ This section shows the results of classification if all transients are for
  line switching.
  Creating the switching events as described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Creation-of-Line-switching-cases"
 
 \end_inset
 
- and using either end currents, the accuracy in table 
+ and using either end currents, the accuracy in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table2"
+reference "tab:table2"
 
 \end_inset
 
@@ -2449,32 +2497,32 @@ name "subsec:Line-Identification-in-lightning"
 \begin_layout Standard
 If all transient events are lightning only as described in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:Creation-of-Lightning-cases"
 
 \end_inset
 
-, then using any end data gives the results in table 
+, then using any end data gives the results in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table3"
+reference "tab:table3"
 
 \end_inset
 
  irrespective of the terminal used or the level used ( levels 1 to 4).
  Level 3 required 30 neurons in the hidden layer with lower levels requiring
  less neurons and higher levels requiring more neurons.
- One has to note that in table 
+ One has to note that in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table2"
+reference "tab:table2"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table3"
+reference "tab:table3"
 
 \end_inset
 
@@ -2493,7 +2541,7 @@ status collapsed
 Switching Classification Accuracy 
 \begin_inset CommandInset label
 LatexCommand label
-name "table2"
+name "tab:table2"
 
 \end_inset
 
@@ -2698,7 +2746,7 @@ status collapsed
 Lightning Classification Accuracy
 \begin_inset CommandInset label
 LatexCommand label
-name "table3"
+name "tab:table3"
 
 \end_inset
 
@@ -2930,28 +2978,28 @@ reference "subsec:Creation-of-Lightning-cases"
 \end_inset
 
  above.
- The output is shown in table 
+ The output is shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
 .
  Once again levels 1 through 4 give the same classification accuracy whether
  bus 23 or 25 is used.
- The ANN used for table 
+ The ANN used for 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
  has a size of 30 when trained with level 3 currents.
- It should be pointed out that in table 
+ It should be pointed out that in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
@@ -2968,10 +3016,10 @@ It is now a straightforward manner to construct a two layer feedforward
  network that classify any event to fault, lightning or switching in the
  first layer then identify the line causing the event in the second layer.
  Alternatively, a relay can be programmed to classify the events into fault,
- switching or lightning per table 
+ switching or lightning per 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
@@ -2991,7 +3039,7 @@ status collapsed
 Transient Event Type Classification Accuracy 
 \begin_inset CommandInset label
 LatexCommand label
-name "table4"
+name "tab:table4"
 
 \end_inset
 
@@ -3123,7 +3171,7 @@ Since power systems are subject to harsh environmental conditions, error
  devices used.
  The author analyzed the performance of the proposed algorithm when noise
  exists in the current measurements.
- Noise has been added to the data that has been generated in section 
+ Noise has been added to the data that has been generated in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:Creation-Of-Transient"
@@ -3161,32 +3209,32 @@ reference "subsec:Transient-Event-Type"
 
 \end_inset
 
- to see how noise can affect the classification accuracy.
- As can be seen from tables 
+ to see how noise affects the classification accuracy.
+ As can be seen from 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table8"
+reference "tab:table8"
 
 \end_inset
 
-,
+, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table9"
+reference "tab:table9"
 
 \end_inset
 
-,
+, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table10"
+reference "tab:table10"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table11"
+reference "tab:table11"
 
 \end_inset
 
@@ -3233,17 +3281,17 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
+testing ANN in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table1"
+reference "tab:table1"
 
 \end_inset
 
- with Noisy and Denoised Data in case of Faults 
+ with noisy and denoised data in case of faults 
 \begin_inset CommandInset label
 LatexCommand label
-name "table8"
+name "tab:table8"
 
 \end_inset
 
@@ -4040,17 +4088,17 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
+testing ANN in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table2"
+reference "tab:table2"
 
 \end_inset
 
- with Noisy and Denoised Data in case of Switching
+ with noisy and denoised data in case of switching
 \begin_inset CommandInset label
 LatexCommand label
-name "table9"
+name "tab:table9"
 
 \end_inset
 
@@ -4847,17 +4895,17 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
+testing ANN in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table3"
+reference "tab:table3"
 
 \end_inset
 
- with Noisy and Denoised Data in case of Lightning
+ with noisy and denoised data in case of lightning
 \begin_inset CommandInset label
 LatexCommand label
-name "table10"
+name "tab:table10"
 
 \end_inset
 
@@ -5654,17 +5702,17 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing ANN in Table 
+testing ANN in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
- with Noisy and Denoised Data 
+ with noisy and denoised data in case of all transient events 
 \begin_inset CommandInset label
 LatexCommand label
-name "table11"
+name "tab:table11"
 
 \end_inset
 
@@ -6116,9 +6164,9 @@ Switching
 \end_layout
 
 \begin_layout Standard
-To remove noise from data, the author has used wavelet denoising approach.
+To remove noise from data, the author used wavelet denoising approach.
  The wavelets toolbox in MATLAB has been used to perform wavelet denoising.
- The denoised data are used for testing the ANNs trained in section 
+ The denoised data are used for testing the ANNs trained in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:LINE-IDENTIFICATION-IN-faults"
@@ -6159,28 +6207,28 @@ reference "fig:Noisy-Singal"
  The results of this testing is provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table8"
+reference "tab:table8"
 
 \end_inset
 
-,
+, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table9"
+reference "tab:table9"
 
 \end_inset
 
-,
+, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table10"
+reference "tab:table10"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table11"
+reference "tab:table11"
 
 \end_inset
 
@@ -6352,7 +6400,7 @@ key "perera2011recognition"
 
  and applied it to the system in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:fig.1"
 
 \end_inset
@@ -6369,7 +6417,7 @@ reference "subsec:Creation-Of-Transient"
  The results of classification are provided in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table5"
+reference "tab:table5"
 
 \end_inset
 
@@ -6377,14 +6425,14 @@ reference "table5"
  As can be seen from both 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table4"
+reference "tab:table4"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "table5"
+reference "tab:table5"
 
 \end_inset
 
@@ -6424,7 +6472,7 @@ status collapsed
 PNN Classification Accuracy 
 \begin_inset CommandInset label
 LatexCommand label
-name "table5"
+name "tab:table5"
 
 \end_inset
 
