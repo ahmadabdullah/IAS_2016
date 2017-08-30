@@ -1596,7 +1596,7 @@ key "greenwood1991electrical"
 \end_layout
 
 \begin_layout Subsection
-Creation Of Transient Cases And Preparation Of Cases For Training Of ANN
+Creation of Transient Cases and Preparation of Cases for Training of ANN
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Creation-Of-Transient"
@@ -6277,7 +6277,7 @@ name "fig:Noisy-Singal"
 \end_layout
 
 \begin_layout Section
-Comparison to existing methods in literature
+Comparison to Existing Methods in Literature
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Comparison-to-lit"
