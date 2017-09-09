@@ -1763,7 +1763,7 @@ Fault cases are created in batches; a batch for each line.
 \end_inset
 
 .
- The distance take the following values: 5%, 15%, 35%, 50%, 65%, 80% and
+ The distance takes the following values: 5%, 15%, 35%, 50%, 65%, 80% and
  95% which are all percentages of total line length.
  Simulations are created for line 23-25 and it adjacent lines.
  
@@ -1813,7 +1813,7 @@ name "subsec:Creation-of-Line-switching-cases"
 \end_layout
 
 \begin_layout Standard
-For line switching cases, a batch for each line has been creating giving
+For line switching cases, a batch for each line has been created giving
  a total of 6 batches.
  Each batch consists of smaller batches; each of the smaller batches corresponds
  to switching by one of the circuits breakers at each terminal.
