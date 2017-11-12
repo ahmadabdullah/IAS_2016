@@ -7,17 +7,19 @@
 \textclass IEEEtran
 \begin_preamble
 % for subfigures/subtables
-\ifCLASSOPTIONcompsoc
-\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
-\else
 \usepackage[caption=false,font=footnotesize]{subfig}
-\fi
+\renewcommand{\thetable}{\arabic{table}}
+%\renewcommand{\figurename}{Fig.}
+%\newref{fig}{name = \RSFig.txt}
+%\newref{tab}{name = \RSTabtxt}
+%\newref{eq}{name = \RSEqtxt}
+%\newcommand{\squeezeup}{\vspace{-2.5mm}}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
 \language english
-\language_package default
-\inputencoding default
+\language_package none
+\inputencoding auto
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -40,9 +42,9 @@
 \use_hyperref true
 \pdf_title "Your Title"
 \pdf_author "Your Name"
-\pdf_bookmarks true
+\pdf_bookmarks false
 \pdf_bookmarksnumbered true
-\pdf_bookmarksopen true
+\pdf_bookmarksopen false
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks false
 \pdf_pdfborder true
@@ -54,17 +56,17 @@
 \use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
-\use_package cancel 1
+\use_package cancel 0
 \use_package esint 0
 \use_package mathdots 1
-\use_package mathtools 1
+\use_package mathtools 0
 \use_package mhchem 1
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
-\cite_engine natbib
-\cite_engine_type numerical
-\biblio_style plainnat
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style 
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -136,11 +138,12 @@ Paper previously presented at the 2016 Power and Energy Conference (PECI),
 status collapsed
 
 \begin_layout Plain Layout
-Ahmad Abdullah is with Electric Power Engineers Inc., Austin, TX, 78738,
- e-mail: 
+Ahmad Abdullah is with the Department of Electrical Power and Machines,
+ Faculty of Engineering, Cairo University, Egypt and Electric Power Engineers
+ Inc., Austin, TX, USA, e-mail: 
 \begin_inset CommandInset href
 LatexCommand href
-target "ahmad.abdullah@ieee.org"
+target "ahmad.abdullah@cu.edu.eg"
 type "mailto:"
 
 \end_inset
@@ -334,10 +337,9 @@ key "Lyons1997"
 \end_inset
 
 .
- FFT requires the signal be stationary in the wide sense for the calculation
- of coefficients to be accurate, i.e.
- the signal cannot have any temporal variations for the calculation of coefficie
-nts to be correct and accurate.
+ The FFT requires the signal be stationary in the wide sense for the calculation
+ of coefficients to be accurate, i.e., the signal cannot have any temporal
+ variations for the calculation of coefficients to be correct and accurate.
  Short Window Fourier Transform 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -345,7 +347,7 @@ key "oppenheim1989discrete"
 
 \end_inset
 
- can solve some of the problems with FFT but it introduces other issues.
+ can solve some of the problems with the FFT but it introduces other issues.
  However most signals encountered in power systems are not stationary but
  have their characteristics change with time.
  
@@ -380,10 +382,10 @@ key "Boggess2009"
 
  that if the signal spans a small portion of the time domain then its Fourier
  Transform will span a large portion of frequency domain.
- DWT on the other hand does not suffer from such a limitation.
+ The DWT on the other hand does not suffer from such a limitation.
  On the contrary, the signal is approximated at various levels –frequency
  bands- and changes in time manifest themselves at the coefficients of the
- wavelets only around the time which the event occurred.
+ wavelets only around the time in which the event occurred.
  Such property makes it ideal to detect disturbances and study power system
  transients 
 \begin_inset CommandInset citation
@@ -456,9 +458,9 @@ key "Mao2001"
 
 \end_inset
 
-, DWT is applied to voltages and currents but instead of feeding the details
- coefficients to the ANN, entropy (energy) of the signal is captured and
- fed instead to the ANN to make fault type classification between faults
+, the DWT is applied to voltages and currents but instead of feeding the
+ details coefficients to the ANN, entropy (energy) of the signal is captured
+ and fed instead to the ANN to make fault type classification between faults
  on the same transmission line.
  In 
 \begin_inset CommandInset citation
@@ -474,9 +476,9 @@ key "Zwe-Lee2004"
 
 \end_inset
 
-, DWT is applied to voltage and current signals at a relay location resulting
- in series of details coefficients that are fed to the ANN for fault detection
- and type classification.
+, the DWT is applied to voltage and current signals at a relay location
+ resulting in series of details coefficients that are fed to the ANN for
+ fault detection and type classification.
  In 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -519,11 +521,11 @@ In this paper, the wavelets details coefficients are directly used to train
  It is also shown that the same apply for lightning strikes and line switching
  cases, i.e., the algorithm can tell which line is causing which transient
  event.
- Just as FFT produces coefficients that correspond to certain frequencies,
+ Just as the FFT produces coefficients that correspond to certain frequencies,
  wavelets details also give information regarding the oscillatory components
  of the signal localizing them in time.
- In this regard, DWT is used to extract useful oscillatory information about
- the signal.
+ In this regard, the DWT is used to extract useful oscillatory information
+ about the signal.
  Oscillatory information is manifested in the wavelets details coefficients
  at various levels.
  It is shown that any transient event on a specific transmission line causes
@@ -625,13 +627,13 @@ name "sec:Background"
 \end_layout
 
 \begin_layout Standard
-In this section, a brief overview of both DWT and ANN as used in this paper
- is provided.
+In this section, a brief overview of both the DWT and ANN as used in this
+ paper is provided.
  
 \end_layout
 
 \begin_layout Subsection
-DWT
+Discrete Wavelet Transform
 \end_layout
 
 \begin_layout Standard
@@ -668,14 +670,15 @@ key "Boggess2009"
  lower frequency band.
  Continuing this manner, by applying successive low and high pass filters,
  one obtains a set of levels -also called details- and one last approximation.
- In theory the last approximation should correspond to a pure sine wave
+ In theory, the last approximation should correspond to a pure sine wave
  assuming that the high frequency components imposed on the power frequency
  have frequencies that are not included in the frequency band of the last
  approximation.
  Taking a numerical example, if one uses 200 kHz sampling frequency, then
- the resulting DWT decomposition is shown in 
+ the resulting DWT decomposition is shown in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:DWT-example"
 
 \end_inset
@@ -683,7 +686,7 @@ reference "fig:DWT-example"
 .
  The details coefficients of the DWT transform is provided in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:DWT_eq"
 
 \end_inset
@@ -734,7 +737,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename DWT flow chart.tif
+	filename graphics/DWT flow chart.tif
 	scale 70
 
 \end_inset
@@ -755,10 +758,6 @@ name "fig:DWT-example"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -889,8 +888,21 @@ At this point, the author needs to introduce new terminology.
  and currents to oscillate in a manner in accordance with the parameters
  of that fault case.
  The formal solution of the currents and voltages of a single phase line
- is given by the following two equations (called telegrapher equations)
- 
+ is given by equations 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+
+\end_inset
+
+ (called telegrapher equations) 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Grainger1994"
@@ -967,14 +979,14 @@ Where:
 \begin_layout Standard
 A general closed form solution of 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:1"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:2"
 
 \end_inset
@@ -1008,14 +1020,14 @@ The main aim is to detect the fault once it is initiated.
  This is because each fault case on a specific line has its set of equations
  as given in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:1"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:2"
 
 \end_inset
@@ -1123,7 +1135,7 @@ In this paper it is argued and shown that the oscillatory information present
  Fourier analysis is not suitable for analyzing such waveforms because those
  oscillations will be distorted and attenuated as they arrive at the line
  terminals.
- However, applying DWT will enable us to see both the spectral and temporal
+ However, applying the DWT will enable us to see both the spectral and temporal
  variations of those high frequency oscillations.
  
 \end_layout
@@ -1179,7 +1191,7 @@ key "Zurada1992"
  ANN classification is used to show that this is indeed the case.
  Static feedforward ANN is a tool used to map a vector from the n-dimensional
  space to another m-dimensional space.
- In the case in hand, the feature vector is mapped which is n-dimensional
+ In the case at hand, the feature vector is mapped which is n-dimensional
  space to another output space.
  These output spaces will be described in 
 \begin_inset CommandInset ref
@@ -1200,10 +1212,10 @@ key "Zurada1992"
 \end_layout
 
 \begin_layout Standard
-Information is extracted from the high frequency components using DWT at
- various levels.
- Before DWT is applied, phase currents are decoupled from each other using
- modal analysis 
+Information is extracted from the high frequency components using the DWT
+ at various levels.
+ Before the DWT is applied, phase currents are decoupled from each other
+ using modal analysis 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Hedman1965,Hedman1965b"
@@ -1278,7 +1290,7 @@ key "Siqueira2015"
 \end_layout
 
 \begin_layout Standard
-After decoupling phase quantities, DWT is applied to the currents modes
+After decoupling phase quantities, the DWT is applied to the currents modes
  to convert the signals to a series of coefficients that will be used for
  training of the neural networks.
  The event is detected once a change of level 3 -or any level depending
@@ -1317,7 +1329,7 @@ reference "sec:Building-of-Feature"
  Once the size of ANN is selected, the ANN is then trained using various
  scenarios for transients on lines.
  It is shown that using only two modes of local current information at one
- end of the line- corresponding to a relay- distinction can be made between
+ end of the line - corresponding to a relay, distinction can be made between
  various transient events on different lines.
  It is argued and shown that the feature vector built has sufficient information
  to distinguish between a fault and non-fault condition on a protected transmiss
@@ -1337,7 +1349,7 @@ Decouple currents using modal analysis.
 \end_layout
 
 \begin_layout Enumerate
-Apply DWT to the aerial modes using one eighth of a cycle of post event
+Apply the DWT to the aerial modes using one eighth of a cycle of post event
  currents.
 \end_layout
 
@@ -1395,10 +1407,11 @@ name "subsec:EMTP-Model"
 \end_layout
 
 \begin_layout Standard
-The area under study is shown in 
+The area under study is shown in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:fig.1"
+LatexCommand ref
+reference "fig:fig_1"
 
 \end_inset
 
@@ -1445,7 +1458,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename System under study.svg
+	filename graphics/System_under study.svg
 	scale 40
 
 \end_inset
@@ -1460,7 +1473,7 @@ status collapsed
 Portion of the system under study
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:fig.1"
+name "fig:fig_1"
 
 \end_inset
 
@@ -1469,10 +1482,6 @@ name "fig:fig.1"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1506,7 +1515,7 @@ key "Perera2008"
 
 \end_inset
 
- apply very well in our case, i.e, no need to model CT saturation effects.
+ apply very well in our case, i.e., no need to model CT saturation effects.
  Synchronous machines are modeled using ATP SM-59 except for excitation
  and governor controls.
  This is because only one eighth of a cycle of post event data is used which
@@ -1541,9 +1550,10 @@ key "ALSTOM2002"
 
 \end_inset
 
- in the paper for convenience of reader in 
+ in the paper for convenience of reader in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:fig2"
 
 \end_inset
@@ -1624,8 +1634,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Tower Configurations.svg
-	scale 35
+	filename graphics/Tower_Configurations.svg
+	scale 40
 	clip
 
 \end_inset
@@ -1763,7 +1773,7 @@ Fault cases are created in batches; a batch for each line.
 \end_inset
 
 .
- The distance take the following values: 5%, 15%, 35%, 50%, 65%, 80% and
+ The distance takes the following values: 5%, 15%, 35%, 50%, 65%, 80% and
  95% which are all percentages of total line length.
  Simulations are created for line 23-25 and it adjacent lines.
  
@@ -1813,7 +1823,7 @@ name "subsec:Creation-of-Line-switching-cases"
 \end_layout
 
 \begin_layout Standard
-For line switching cases, a batch for each line has been creating giving
+For line switching cases, a batch for each line has been created giving
  a total of 6 batches.
  Each batch consists of smaller batches; each of the smaller batches corresponds
  to switching by one of the circuits breakers at each terminal.
@@ -1838,7 +1848,7 @@ name "subsec:Creation-of-Lightning-cases"
 \end_layout
 
 \begin_layout Standard
-For lightning strike cases a batch of each line has been again created.
+For lightning strike cases, a batch of each line has been again created.
  An ATP Heidler type lightning source with rising time equal to 4 
 \begin_inset Formula $\mu s$
 \end_inset
@@ -1883,7 +1893,7 @@ After batches have been created, a special subroutine is used to translate
  The two aerial modes are the only ones used for training.
  The modal matrix with real entries is given in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:eq4"
 
 \end_inset
@@ -1928,11 +1938,11 @@ key "Ametani2013"
 \end_layout
 
 \begin_layout Standard
-Once the modal quantities are available, we run DWT with db4 for 4 levels,
+Once the modal quantities are available, we run the DWT with db4 for 4 levels,
  starting from level 1 to level 4.
  Db4 has been used since it has produced good results with previous literature.
- The outcome of DWT is a series of coefficients for each level and for each
- mode.
+ The outcome of the DWT is a series of coefficients for each level and for
+ each mode.
  Since the first one eighth of a cycle following the transient event is
  only sought, the details coefficients corresponding to that period are
  only obtained.
@@ -2019,9 +2029,10 @@ reference "subsec:Creation-Of-Transient"
 \end_inset
 
 .
- This notion of “in-betweenness” is illustrated in 
+ This notion of “in-betweenness” is illustrated in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:fault_resistance"
 
 \end_inset
@@ -2128,23 +2139,7 @@ reference "subsec:Line-Identification-in-lightning"
 
 \end_inset
 
- below, the events are being mapped to the lines causing them which amounts
- to a mapping from the n-dimensional space to a 6-dimesnioal space (one
- dimension per line, line 25-27 counted twice for the double circuit).
- In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:Transient-Event-Type"
-
-\end_inset
-
-, all events are being mapped to an event-type space which is a mapping
- from n-dimensional space to a 3-dimsnsional space (faults, lightning and
- switching).
- It should be apparent that the dimension of the feature space (n-dimensional
- space) depends on the DWT level used.
- It should be obvious as well that this dimension is halved as we go one
- 
+ below, the events are being mapped to the lines causing them 
 \begin_inset Float figure
 placement H
 wide false
@@ -2154,9 +2149,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename sigAnalysis.svg
-	width 10cm
-	height 18cm
+	filename graphics/sigAnalysis.svg
+	scale 30
 
 \end_inset
 
@@ -2183,11 +2177,25 @@ name "fig:fault_resistance"
 
 \end_inset
 
- level higher, i.e., the dimension of the n-dimensional space using level
- 1 is double the dimension of level 2 n-dimensional.
- For the sampling frequency used in this paper, the dimension of the n-dimension
-al space is one hundred and sixty eight (168) if level 4 is used to build
- the feature vector, i.e, each modal current has 84 coefficients.
+ which amounts to a mapping from the n-dimensional space to a 6-dimesnioal
+ space (one dimension per line, line 25-27 counted twice for the double
+ circuit).
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Transient-Event-Type"
+
+\end_inset
+
+, all events are being mapped to an event-type space which is a mapping
+ from n-dimensional space to a 3-dimsnsional space (faults, lightning and
+ switching).
+ It should be apparent that the dimension of the feature space (n-dimensional
+ space) depends on the DWT level used.
+ It should be obvious as well that this dimension is almost halved as we
+ go one level higher, i.e., the dimension of the n-dimensional space using
+ level 1 is double the dimension of level 2 n-dimensional.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2218,9 +2226,9 @@ reference "subsec:Creation-of-Fault"
 .
  Creating the feature vector using currents from terminal 23 as described
  before using any levels from 1 to 4 to train ANN gives the classification
- accuracy in 
+ accuracy in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table1"
 
 \end_inset
@@ -2228,9 +2236,10 @@ reference "tab:table1"
 .
  One immediately sees that classification accuracy for the double circuits
  of line 25-27 fails.
- This is to be expected if the reader consults 
+ This is to be expected if the reader consults Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:fig2"
 
 \end_inset
@@ -2247,9 +2256,9 @@ reference "fig:fig2"
  Training with levels 1, 2, 3 and 4 gives the same classification accuracy
  but the difference is mainly in the ANN size needed.
  For reproducibility purposes, an ANN of size 40 in the hidden layer is
- needed to achieve the results in 
+ needed to achieve the results in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table1"
 
 \end_inset
@@ -2467,9 +2476,9 @@ reference "subsec:Creation-of-Line-switching-cases"
 
 \end_inset
 
- and using either end currents, the accuracy in 
+ and using either end currents, the accuracy in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table2"
 
 \end_inset
@@ -2502,26 +2511,26 @@ reference "subsec:Creation-of-Lightning-cases"
 
 \end_inset
 
-, then using any end data gives the results in 
+, then using any end data gives the results in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table3"
 
 \end_inset
 
- irrespective of the terminal used or the level used ( levels 1 to 4).
+ irrespective of the terminal used or the level used (levels 1 to 4).
  Level 3 required 30 neurons in the hidden layer with lower levels requiring
  less neurons and higher levels requiring more neurons.
- One has to note that in 
+ One has to note that in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table2"
 
 \end_inset
 
- and 
+ and Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table3"
 
 \end_inset
@@ -2978,9 +2987,9 @@ reference "subsec:Creation-of-Lightning-cases"
 \end_inset
 
  above.
- The output is shown in 
+ The output is shown in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table4"
 
 \end_inset
@@ -2988,17 +2997,17 @@ reference "tab:table4"
 .
  Once again levels 1 through 4 give the same classification accuracy whether
  bus 23 or 25 is used.
- The ANN used for 
+ The ANN used for Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table4"
 
 \end_inset
 
  has a size of 30 when trained with level 3 currents.
- It should be pointed out that in 
+ It should be pointed out that in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table4"
 
 \end_inset
@@ -3016,9 +3025,9 @@ It is now a straightforward manner to construct a two layer feedforward
  network that classify any event to fault, lightning or switching in the
  first layer then identify the line causing the event in the second layer.
  Alternatively, a relay can be programmed to classify the events into fault,
- switching or lightning per 
+ switching or lightning per Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table4"
 
 \end_inset
@@ -3145,10 +3154,6 @@ Switching
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -3210,30 +3215,30 @@ reference "subsec:Transient-Event-Type"
 \end_inset
 
  to see how noise affects the classification accuracy.
- As can be seen from 
+ As can be seen from Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table8"
 
 \end_inset
 
-, 
+, Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table9"
 
 \end_inset
 
-, 
+, Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table10"
 
 \end_inset
 
- and 
+ and Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table11"
 
 \end_inset
@@ -6196,38 +6201,39 @@ reference "subsec:Transient-Event-Type"
 
 .
  The waveform of mode2 current of a certain fault case with noise (SNR=40)
- and after denoising is shown in 
+ and after denoising is shown in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Noisy-Singal"
 
 \end_inset
 
 .
- The results of this testing is provided in 
+ The results of this testing is provided in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table8"
 
 \end_inset
 
-, 
+, Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table9"
 
 \end_inset
 
-, 
+, Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table10"
 
 \end_inset
 
- and 
+ and Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table11"
 
 \end_inset
@@ -6247,7 +6253,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Matlab Files and raster images/noise vs denoised signal .svg
+	filename graphics/noise_denoised_signal.svg
 	scale 15
 
 \end_inset
@@ -6398,10 +6404,11 @@ key "perera2011recognition"
 
 \end_inset
 
- and applied it to the system in 
+ and applied it to the system in Fig.
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:fig.1"
+LatexCommand ref
+reference "fig:fig_1"
 
 \end_inset
 
@@ -6414,24 +6421,24 @@ reference "subsec:Creation-Of-Transient"
 \end_inset
 
  is then applied to the to PNN classifier.
- The results of classification are provided in 
+ The results of classification are provided in Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table5"
 
 \end_inset
 
 .
- As can be seen from both 
+ As can be seen from both Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table4"
 
 \end_inset
 
- and 
+ and Table 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:table5"
 
 \end_inset
@@ -6679,12 +6686,50 @@ This paper could not have seen the light without the resources at Texas
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "Dissertation_jab,Proposal_endNote"
+bibfiles "references"
 options "IEEEtran"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Biography
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/Pic1.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Ahmad Abdullah
+\end_layout
+
+\end_inset
+
+ received his B.Sc.
+ M.Sc.
+ degrees from the Department of Electrical Power and Machines at Faculty
+ of Engineering at Cairo University, Cairo, Egypt, in 2009 and 2012, respectivel
+y.
+ He received his Ph.D.
+ degree from Electrical and Computer Engineering Department at Texas A&M
+ University, College Station, TX in 2017.
+ Since 2015, he has been with Electric Power Engineers, Inc as a power systems
+ engineer responsible for conducting power system design studies.
 \end_layout
 
 \end_body
