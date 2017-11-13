@@ -1127,7 +1127,14 @@ In this paper it is argued and shown that the oscillatory information present
  in the transient signal captured at a single relay location caused by sudden
  network topology changes contains sufficient information for classification
  not only between transients on the same line but also between transients
- on adjacent lines.
+ on adjacent lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "abdullah2016towards"
+
+\end_inset
+
+.
  Any change of configuration on the line causes a traveling wave to be generated
  traveling from the point of change towards the ends of the line.
  In the simplest case this wave will be just a pulse -a step- but in reality
